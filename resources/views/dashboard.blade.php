@@ -21,7 +21,7 @@
                                 <h3>{{$penyewacount}}</h3>
                             </div>
                             <div class="col-6 col-md-3">
-                                <h4 class="text-black"><b>Jumlah Rumah Kaca</b></h4>
+                                <h4 class="text-black"><b>Jumlah Pemasangan</b></h4>
                                 <h3>{{$totalrumahcount}}</h3>
                             </div>
                             <div class="col-6 col-md-3">
@@ -53,33 +53,31 @@
             </div>
         </div>
 
-        <!-- Row 2: Images of Rumah Kaca, Kasa, and Kawat -->
         <div class="row mt-4">
-            <!-- Rumah Kaca -->
             <div class="col-lg-4 col-sm-12 mb-4">
                 <div class="card">
-                    <img src="assets/rumahkaca.jpg" class="card-img-top" width="140px" alt="Rumah Kaca">
+                    <img src="assets/rumahkaca.jpg" class="card-img-top" width="140px" alt="Pemasangan">
                     <div class="card-body text-center">
-                        <h4>Rumah Kaca</h4>
+                        <h4>Pemasangan</h4>
                     </div>
                 </div>
             </div>
 
-            <!-- Rumah Kasa -->
+            <!-- Kerusakan -->
             <div class="col-lg-4 col-sm-12 mb-4">
                 <div class="card">
-                    <img src="assets/rumahkaca.jpg" class="card-img-top" alt="Rumah Kasa">
+                    <img src="assets/rumahkaca.jpg" class="card-img-top" alt="Kerusakan">
                     <div class="card-body text-center">
-                        <h4>Rumah Kasa</h4>
+                        <h4>Kerusakan</h4>
                     </div>
                 </div>
             </div>
-            <!-- Rumah Kawat -->
+            <!-- Perbaikan -->
             <div class="col-lg-4 col-sm-12 mb-4">
                 <div class="card">
-                    <img src="assets/rumahkaca.jpg" class="card-img-top" alt="Rumah Kawat">
+                    <img src="assets/rumahkaca.jpg" class="card-img-top" alt="Perbaikan">
                     <div class="card-body text-center">
-                        <h4>Rumah Kawat</h4>
+                        <h4>Perbaikan</h4>
                     </div>
                 </div>
             </div>

@@ -19,20 +19,20 @@
 <!-- Or for RTL support -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 
-<title>Data Pemasangan</title>
+<title>Data Lapangan</title>
 
 
 <body>
     <div class="container-fluid">
         <div class="card">
           <div class="card-body" style="border-radius: 15px;">
-              <h1 class="text-center mb-4">Edit Data Pemasangan</h1>
+              <h1 class="text-center mb-4">Edit Data Lapangan</h1>
               <div class="container">
                   <div class="row justify-content-center">
                       <div class="col-8">
                           <div class="card" style="border-radius: 10px;">
                               <div class="card-body">
-                                <form method="POST" action="{{ route('pemasangan.update', $item->id) }}" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('lapangan.update', $item->id) }}" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
 
@@ -76,13 +76,18 @@
                                         <input value="{{ $item->lokasi }}" type="text" name="lokasi" class="form-control" placeholder="Masukkan Lokasi" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="kapasitas">Kapasitas</label>
-                                        <input value="{{ $item->kapasitas }}" type="text" name="kapasitas" class="form-control" placeholder="Masukkan Kapasitas" required>
+                                        <label for="hambatan">Hambatan</label>
+                                        <input value="{{ $item->hambatan }}" type="text" name="hambatan" class="form-control" placeholder="Masukkan Hambatan" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="odcterhubung">ODC Terhubung</label>
-                                        <input value="{{ $item->odcterhubung }}" type="text" name="odcterhubung" class="form-control" placeholder="Masukkan ODC Terhubung" required>
+                                        <label for="deskripsi">Deskripsi</label>
+                                        <input value="{{ $item->deskripsi }}" type="text" name="deskripsi" class="form-control" placeholder="Masukkan Deskripsi" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="material">Material</label>
+                                        <input value="{{ $item->material }}" type="text" name="material" class="form-control" placeholder="Masukkan material" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>

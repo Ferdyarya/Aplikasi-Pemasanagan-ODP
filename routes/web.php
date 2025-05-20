@@ -78,6 +78,11 @@ Route::prefix('dashboard')->middleware(['auth:sanctum'])->group(function() {
     Route::get('laporanperbaikan', [PerbaikanController::class, 'filterdateperbaikan'])->name('laporanperbaikan');
     Route::get('laporanperbaikanpdf/filter={filter}', [PerbaikanController::class, 'laporanperbaikanpdf'])->name('laporanperbaikanpdf');
 
+    // lapangan
+    Route::get('laporannya/laporanlapangan', [LapanganController::class, 'cetaklapanganpertanggal'])->name('laporanlapangan');
+    Route::get('laporanlapangan', [LapanganController::class, 'filterdatelapangan'])->name('laporanlapangan');
+    Route::get('laporanlapanganpdf/filter={filter}', [LapanganController::class, 'laporanlapanganpdf'])->name('laporanlapanganpdf');
+
 
 
 

@@ -69,8 +69,8 @@
                                         <input value="{{ $item->kapasitas }}" type="text" name="kapasitas" class="form-control" placeholder="Masukkan Kapasitas" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="catatan">Catatan</label>
-                                        <textarea value="{{ $item->catatan }}" type="text" name="catatan" class="form-control" placeholder="Masukkan Catatan" required>
+                                        <label for="keterangan">Keterangan</label>
+                                        <textarea value="{{ $item->keterangan }}" type="text" name="keterangan" class="form-control" placeholder="Masukkan Keterangan" required>
                                     </div>
 
                                     <div class="form-group">

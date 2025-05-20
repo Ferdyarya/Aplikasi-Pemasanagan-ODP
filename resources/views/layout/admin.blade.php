@@ -10,6 +10,7 @@
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     </head>
 
+
     <body>
     @if (session('success'))
         <script>
@@ -34,7 +35,7 @@
                 <br>
               <div class="brand-logo d-flex align-items-center justify-content-between">
                 <a href="./index.html" class="text-nowrap logo-img">
-                  <img src="{{ asset('assets/telkomlogo.png')}}" width="180" alt="" />
+                  <img src="{{ asset('assets/logo1.png')}}" width="180" alt="logo" />
                 </a>
                 <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                   <i class="ti ti-x fs-8"></i>
@@ -55,7 +56,6 @@
                       <span class="hide-menu">Dashboard</span>
                     </a>
                   </li>
-                  @if (Auth::user()->hakakses('admin'))
                   <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">MASTER DATA</span>
@@ -84,16 +84,7 @@
                       <span class="hide-menu">Client</span>
                     </a>
                   </li>
-                  {{-- <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('masternokursi.index')}}" aria-expanded="false">
-                      <span>
-                        <i class="ti ti-article"></i>
-                      </span>
-                      <span class="hide-menu">Kategori No Kursi</span>
-                    </a>
-                  </li> --}}
-                  @endif
-                  @if (Auth::user()->hakakses('supervisor') || Auth::user()->hakakses('admin'))
+
                   <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Data Table</span>
@@ -133,69 +124,108 @@
                         <span class="hide-menu">Perbaikan Alat</span>
                     </a>
                 </li>
-                @endif
-                {{-- <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('suratdisposisi.index') }}" aria-expanded="false">
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('lapangan.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-mail"></i>
+                            <i class="ti ti-menu"></i>
                         </span>
-                        <span class="hide-menu">Surat masuk</span>
+                        <span class="hide-menu">Laporan Lapangan</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('suratdisposisi.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="/" aria-expanded="false">
                         <span>
-                            <i class="ti ti-mail"></i>
+                            <i class="ti ti-menu"></i>
                         </span>
-                        <span class="hide-menu">Surat Keluar</span>
+                        <span class="hide-menu">Pergantian Alat Rusak</span>
                     </a>
-                </li> --}}
-                @if (Auth::user()->hakakses('admin')|| Auth::user()->hakakses('teknisi'))
-                  {{-- <li class="nav-small-cap">
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-menu"></i>
+                        </span>
+                        <span class="hide-menu">Evaluasi kerja</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-menu"></i>
+                        </span>
+                        <span class="hide-menu">Pemasangan Jaringan</span>
+                    </a>
+                </li>
+
+
+                  <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Report</span>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('laporansewarumahkaca')}}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('laporanizinlokasi')}}" aria-expanded="false">
                       <span>
                         <i class="ti ti-report"></i>
                       </span>
-                      <span class="hide-menu">Lap Semua Sewa Rumah kaca</span>
+                      <span class="hide-menu">Lap Surat Izin Masuk</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('laporanrawatrumahkaca')}}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('laporanpemasangan')}}" aria-expanded="false">
                       <span>
                         <i class="ti ti-report"></i>
                       </span>
-                      <span class="hide-menu">Lap Perawatan Rumah kaca</span>
+                      <span class="hide-menu">Lap Pengajuan Pemasangan</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('laporanpembangunanrumahkaca')}}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('laporanperbaikan')}}" aria-expanded="false">
                       <span>
                         <i class="ti ti-report"></i>
                       </span>
-                      <span class="hide-menu">Lap Pembangunan Rumah kaca</span>
+                      <span class="hide-menu">Lap Pengajuan Perbaikan</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('pernama')}}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('laporanlapangan')}}" aria-expanded="false">
                       <span>
                         <i class="ti ti-report"></i>
                       </span>
-                      <span class="hide-menu">Lap Jumlah Penyewa Rumah Kaca</span>
+                      <span class="hide-menu">Lap Laporan Lapangan</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('perkategori')}}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('laporankerusakan')}}" aria-expanded="false">
                       <span>
                         <i class="ti ti-report"></i>
                       </span>
-                      <span class="hide-menu">Lap Kategori Rumah Kaca</span>
+                      <span class="hide-menu">Lap Kerusakan ODP</span>
                     </a>
-                  </li> --}}
-                  @endif
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link" href="/" aria-expanded="false">
+                      <span>
+                        <i class="ti ti-report"></i>
+                      </span>
+                      <span class="hide-menu">Lap Alat Rusak</span>
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link" href="/" aria-expanded="false">
+                      <span>
+                        <i class="ti ti-report"></i>
+                      </span>
+                      <span class="hide-menu">Lap Evaluasi</span>
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link" href="/" aria-expanded="false">
+                      <span>
+                        <i class="ti ti-report"></i>
+                      </span>
+                      <span class="hide-menu">Lap Pemasangan jaringan</span>
+                    </a>
+                  </li>
                 </ul>
               </nav>
               <!-- End Sidebar navigation -->

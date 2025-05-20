@@ -99,7 +99,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="odcterhubung">odcterhubung</label>
+                                                <label for="odcterhubung">ODC Terhubung</label>
                                                 <input type="text" name="odcterhubung"
                                                     class="form-control @error('odcterhubung') is-invalid @enderror"
                                                     id="odcterhubung" placeholder="Masukkan odcterhubung Kepada"

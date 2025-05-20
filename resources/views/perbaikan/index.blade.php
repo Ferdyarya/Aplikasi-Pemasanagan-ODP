@@ -21,7 +21,7 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Data perbaikan</li>
+                                <li class="breadcrumb-item active">Data Perbaikan</li>
                             </ol>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                                 <th class="px-6 py-2">Teknisi</th>
                                 <th class="px-6 py-2">Lokasi</th>
                                 <th class="px-6 py-2">Kapasitas</th>
-                                <th class="px-6 py-2">Catatan</th>
+                                <th class="px-6 py-2">Keterangan</th>
                                 <th class="px-6 py-2">Foto Sebelum</th>
                                 <th class="px-6 py-2">Foto Sesudah</th>
                                 {{-- <th class="px-6 py-2">Status</th> --}}
@@ -71,7 +71,7 @@
                                 <td class="px-6 py-2">{{ $item->masterteknisi->nama }}</td>
                                 <td class="px-6 py-2">{{ $item->lokasi }}</td>
                                 <td class="px-6 py-2">{{ $item->kapasitas }}</td>
-                                <td class="px-6 py-2">{{ $item->catatan }}</td>
+                                <td class="px-6 py-2">{{ $item->keterangan }}</td>
                                 <td class="px-6 py-2">
                                     <img src="{{ asset('fotosebelum/'.$item->fotosebelum) }}" style="max-width: 150px; height: 120px;">
                                 </td>

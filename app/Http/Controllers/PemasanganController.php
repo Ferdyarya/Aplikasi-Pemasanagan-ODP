@@ -34,6 +34,15 @@ public function create()
     $masteralat = Masteralat::all();
     $masterteknisi = Masterteknisi::all();
 
+    return view('pemasangan.create', [
+        'masterclient' => $masterclient,
+        'masteralat' => $masteralat,
+        'masterteknisi' => $masterteknisi,
+    ]);
+}
+
+public function store(Request $request)
+{
     // Ambil data terakhir dari tabel pemasangan
     $lastPemasangan = Pemasangan::orderBy('id', 'desc')->first();
 
@@ -46,32 +55,18 @@ public function create()
         $nopemasangan = 'PSG-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
     }
 
-    return view('pemasangan.create', [
-        'masterclient' => $masterclient,
-        'masteralat' => $masteralat,
-        'masterteknisi' => $masterteknisi,
-        'nopemasangan' => $nopemasangan,
-    ]);
-}
-
-public function store(Request $request)
-{
-    // Validasi permintaan
-    // $request->validate([
-    //     'id_masterrumahkaca' => 'required|string',
-    //     'tanggal' => 'required|date',
-    //     'deskripsi' => 'required|string',
-    //     'keperluandana' => 'required|numeric',
-    // ]);
-
+    // Ambil semua data dari request
     $data = $request->all();
 
-    // dd($data);
+    // Tambahkan nomor pemasangan ke dalam data
+    $data['nopemasangan'] = $nopemasangan;
 
+    // Simpan ke database
     Pemasangan::create($data);
 
     return redirect()->route('pemasangan.index')->with('success', 'Data telah ditambahkan');
 }
+
 
 
 

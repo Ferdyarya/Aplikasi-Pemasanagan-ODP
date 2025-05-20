@@ -69,6 +69,7 @@
                             <thead>
                                 <tr>
                                 <th class="px-6 py-2">No</th>
+                                <th class="px-6 py-2">Tanggal</th>
                                 <th class="px-6 py-2">Teknisi</th>
                                 <th class="px-6 py-2">Tanggal Kunjungan</th>
                                 <th class="px-6 py-2">Deskripsi</th>
@@ -94,6 +95,10 @@
                                                 <span class="p-2 mb-2 bg-success text-black rounded">Terverifikasi</span> <!-- Green for verified -->
                                             @elseif($item->status == 'Ditolak')
                                                 <span class="p-2 mb-2 bg-danger text-black rounded">Ditolak</span> <!-- Red/orange for rejected -->
+                                            @endif
+                                            <!-- When status is neither 'Terverifikasi', 'Ditolak', nor 'Tunggu Verifikasi' -->
+                                            @if (!Auth::user()->hakakses('pimpinan'))
+                                                <span class="p-2 mb-2 bg-warning text-black rounded">Tunggu Verifikasi</span> <!-- Default to "Waiting for Verification" if not pimpinan -->
                                             @endif
                                         </td>
                                     </tr>

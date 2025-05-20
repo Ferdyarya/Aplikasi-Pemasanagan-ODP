@@ -76,7 +76,7 @@
     <div class="rangkasurat">
         <table width="100%">
             <tr>
-                <td><img src="{{ public_path('assets/telkomlogo.png') }}" alt="logo" width="140px"></td>
+                <td><img src="{{ public_path('assets/logo1.png') }}" alt="logo" width="140px"></td>
                 <td class="tengah">
                     <h4> TELKOM AKSES </h4>
                     <p>Jalan Jenderal Ahmad Yani KM 23, Landasan Ulin, Landasan Ulin Barat, Kec. Liang Anggang, Kota Banjar Baru, Kalimantan Selatan 70723</p>
@@ -102,7 +102,7 @@
                 <th class="px-6 py-2">Teknisi</th>
                 <th class="px-6 py-2">Lokasi</th>
                 <th class="px-6 py-2">Kapasitas</th>
-                <th class="px-6 py-2">Catatan</th>
+                <th class="px-6 py-2">Keterangan</th>
             </tr>
         </thead>
         <tbody>
@@ -118,7 +118,7 @@
                     <td class="px-6 py-2">{{ $item->masterteknisi->nama }}</td>
                     <td class="px-6 py-2">{{ $item->lokasi }}</td>
                     <td class="px-6 py-2">{{ $item->kapasitas }}</td>
-                    <td class="px-6 py-2">{{ $item->catatan }}</td>
+                    <td class="px-6 py-2">{{ $item->keterangan }}</td>
                     {{-- <td class="px-6 py-2">
                         <!-- Display status as a badge if it's already set -->
                         @if($item->status == 'Terverifikasi')

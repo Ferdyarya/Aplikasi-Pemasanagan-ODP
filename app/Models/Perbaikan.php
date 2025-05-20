@@ -9,7 +9,7 @@ class Perbaikan extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id_masteralat','tanggal','lokasi','kapasitas','catatan','fotosebelum','fotosesudah','id_masterteknisi'
+        'id_masteralat','tanggal','lokasi','kapasitas','keterangan','fotosebelum','fotosesudah','id_masterteknisi'
     ];
 
     public function masteralat()

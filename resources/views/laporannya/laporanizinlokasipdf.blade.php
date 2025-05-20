@@ -76,7 +76,7 @@
     <div class="rangkasurat">
         <table width="100%">
             <tr>
-                <td><img src="{{ public_path('assets/telkomlogo.png') }}" alt="logo" width="140px"></td>
+                <td><img src="{{ public_path('assets/logo1.png') }}" alt="logo" width="140px"></td>
                 <td class="tengah">
                     <h4> TELKOM AKSES </h4>
                     <p>Jalan Jenderal Ahmad Yani KM 23, Landasan Ulin, Landasan Ulin Barat, Kec. Liang Anggang, Kota Banjar Baru, Kalimantan Selatan 70723</p>

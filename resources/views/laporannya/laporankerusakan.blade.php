@@ -71,10 +71,9 @@
                                 <th class="px-6 py-2">No</th>
                                 <th class="px-6 py-2">Tanggal</th>
                                 <th class="px-6 py-2">Alat</th>
-                                <th class="px-6 py-2">Teknisi</th>
                                 <th class="px-6 py-2">Lokasi</th>
                                 <th class="px-6 py-2">Kapasitas</th>
-                                <th class="px-6 py-2">Catatan</th>
+                                <th class="px-6 py-2">Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -86,10 +85,9 @@
                                         <td class="px-6 py-6">{{ $loop->iteration }}</td>
                                         <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
                                         <td class="px-6 py-2">{{ $item->masteralat->nama }}</td>
-                                        <td class="px-6 py-2">{{ $item->masterteknisi->nama }}</td>
                                         <td class="px-6 py-2">{{ $item->lokasi }}</td>
                                         <td class="px-6 py-2">{{ $item->kapasitas }}</td>
-                                        <td class="px-6 py-2">{{ $item->catatan }}</td>
+                                        <td class="px-6 py-2">{{ $item->ketkerusakan }}</td>
                                         {{-- <td class="px-6 py-2">
                                             <!-- Display status as a badge if it's already set -->
                                             @if($item->status == 'Terverifikasi')

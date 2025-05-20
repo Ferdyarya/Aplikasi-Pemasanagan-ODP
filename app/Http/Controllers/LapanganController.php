@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use PDF;
 use App\Models\Lapangan;
+use App\Models\Masteralat;
+use App\Models\Masterclient;
 use Illuminate\Http\Request;
+use App\Models\Masterteknisi;
 
 class LapanganController extends Controller
 {
@@ -34,7 +37,6 @@ public function create()
         'masterclient' => $masterclient,
         'masteralat' => $masteralat,
         'masterteknisi' => $masterteknisi,
-        'nolapangan' => $nolapangan,
     ]);
 }
 

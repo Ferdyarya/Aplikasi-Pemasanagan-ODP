@@ -19,20 +19,20 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 
-    <title>Pemasangan</title>
+    <title>Lapangan</title>
 
 
     <body>
         <div class="container-fluid">
             <div class="card" style="border-radius: 15px;">
                 <div class="card-body">
-                    <h1 class="text-center mb-4">Tambah Data Pemasangan</h1>
+                    <h1 class="text-center mb-4">Tambah Data Lapangan</h1>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-8">
                                 <div class="card" style="border-radius: 10px;">
                                     <div class="card-body">
-                                        <form method="POST" action="{{ route('izinlokasi.store') }}"
+                                        <form method="POST" action="{{ route('lapangan.store') }}"
                                             enctype="multipart/form-data">
                                             @csrf
 
@@ -80,31 +80,41 @@
                                                 <label for="lokasi">Lokasi</label>
                                                 <input type="text" name="lokasi"
                                                     class="form-control @error('lokasi') is-invalid @enderror"
-                                                    id="lokasi" placeholder="Masukkan lokasi"
-                                                    value="{{ old('lokasi') }}" required>
+                                                    id="lokasi" placeholder="Masukkan lokasi" value="{{ old('lokasi') }}"
+                                                    required>
                                                 @error('lokasi')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="kapasitas">Kapasitas</label>
-                                                <input type="text" name="kapasitas"
-                                                    class="form-control @error('kapasitas') is-invalid @enderror"
-                                                    id="kapasitas" placeholder="Masukkan kapasitas"
-                                                    value="{{ old('kapasitas') }}" required>
-                                                @error('kapasitas')
+                                                <label for="hambatan">Hambatan</label>
+                                                <input type="text" name="hambatan"
+                                                    class="form-control @error('hambatan') is-invalid @enderror"
+                                                    id="hambatan" placeholder="Masukkan hambatan"
+                                                    value="{{ old('hambatan') }}" required>
+                                                @error('hambatan')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="odcterhubung">odcterhubung</label>
-                                                <input type="text" name="odcterhubung"
-                                                    class="form-control @error('odcterhubung') is-invalid @enderror"
-                                                    id="odcterhubung" placeholder="Masukkan odcterhubung Kepada"
-                                                    value="{{ old('odcterhubung') }}" required>
-                                                @error('odcterhubung')
+                                                <label for="deskripsi">Deskripsi</label>
+                                                <input type="text" name="deskripsi"
+                                                    class="form-control @error('deskripsi') is-invalid @enderror"
+                                                    id="deskripsi" placeholder="Masukkan deskripsi Kepada"
+                                                    value="{{ old('deskripsi') }}" required>
+                                                @error('deskripsi')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="material">Material</label>
+                                                <input type="text" name="material"
+                                                    class="form-control @error('material') is-invalid @enderror"
+                                                    id="material" placeholder="Masukkan material Kepada"
+                                                    value="{{ old('material') }}" required>
+                                                @error('material')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -164,20 +174,20 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
-        $( '#client' ).select2( {
-        theme: "bootstrap-5",
-        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
-        placeholder: $( this ).data( 'placeholder' ),
-        } );
-        $( '#alat' ).select2( {
-        theme: "bootstrap-5",
-        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
-        placeholder: $( this ).data( 'placeholder' ),
-        } );
-        $( '#teknisi' ).select2( {
-        theme: "bootstrap-5",
-        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
-        placeholder: $( this ).data( 'placeholder' ),
-        } );
+        $('#client').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+        });
+        $('#alat').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+        });
+        $('#teknisi').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+        });
     </script>
 @endsection

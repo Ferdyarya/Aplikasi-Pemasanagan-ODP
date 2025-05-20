@@ -90,10 +90,10 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="catatan"></label>
-                                                <textarea name="catatan" class="form-control @error('catatan') is-invalid @enderror" id="catatan"
-                                                    placeholder="Masukkan Catatan" required>{{ old('catatan') }}</textarea>
-                                                @error('catatan')
+                                                <label for="keterangan">Keterangan</label>
+                                                <textarea name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" id="keterangan"
+                                                    placeholder="Masukkan keterangan" required>{{ old('keterangan') }}</textarea>
+                                                @error('keterangan')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
