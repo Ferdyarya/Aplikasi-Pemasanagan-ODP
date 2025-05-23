@@ -86,7 +86,7 @@
     </div>
 
     <center>
-        <h5 class="mt-4">Rekap Laporan Perbaikan Alat</h5>
+        <h5 class="mt-4">Rekap Laporan Pemasangan Jaringan</h5>
     </center>
 
 
@@ -97,12 +97,13 @@
         <thead>
             <tr>
                 <th class="px-6 py-2">No</th>
+                <th class="px-6 py-2">Nomor Pemasangan</th>
                 <th class="px-6 py-2">Tanggal</th>
-                <th class="px-6 py-2">Alat</th>
+                <th class="px-6 py-2">Client</th>
                 <th class="px-6 py-2">Teknisi</th>
-                <th class="px-6 py-2">Lokasi</th>
-                <th class="px-6 py-2">Kapasitas</th>
+                <th class="px-6 py-2">Alamat</th>
                 <th class="px-6 py-2">Catatan</th>
+                <th class="px-6 py-2">Status Pasang</th>
             </tr>
         </thead>
         <tbody>
@@ -113,12 +114,13 @@
             @foreach ($laporanpergantian as $item)
                 <tr>
                     <td class="px-6 py-6">{{ $loop->iteration }}</td>
+                    <td class="px-6 py-2">{{ $item->nopemasangan }}</td>
                     <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
-                    <td class="px-6 py-2">{{ $item->masteralat->nama }}</td>
+                    <td class="px-6 py-2">{{ $item->masterclient->nama }}</td>
                     <td class="px-6 py-2">{{ $item->masterteknisi->nama }}</td>
-                    <td class="px-6 py-2">{{ $item->lokasi }}</td>
-                    <td class="px-6 py-2">{{ $item->kapasitas }}</td>
+                    <td class="px-6 py-2">{{ $item->alamat }}</td>
                     <td class="px-6 py-2">{{ $item->catatan }}</td>
+                    <td class="px-6 py-2">{{ $item->statuspasang }}</td>
                 </tr>
             @endforeach
         </tbody>

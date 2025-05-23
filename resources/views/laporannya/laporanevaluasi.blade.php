@@ -17,12 +17,12 @@
                     <div class="content-header">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h3 class="m-0">Data Laporan Perbaikan</h3>
+                                <h3 class="m-0">Data Laporan Evaluasi Teknisi</h3>
                             </div><!-- /.col -->
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
                                     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Data Laporan Perbaikan</li>
+                                    <li class="breadcrumb-item active">Data Laporan Evaluasi Teknisi</li>
                                 </ol>
                             </div><!-- /.col -->
                         </div><!-- /.row -->
@@ -37,7 +37,7 @@
 
 
                     <div class="container">
-                        <form action="{{ route('laporanperbaikan') }}" method="GET" class="row">
+                        <form action="{{ route('laporanevaluasi') }}" method="GET" class="row">
                             <div class="col-md-3">
                                 <label for="dari">Start Date:</label>
                                 <input type="date" id="dari" name="dari" class="form-control">
@@ -54,10 +54,10 @@
 
                             <div class="col-md-2 pt-4">
                                 @if (!empty($filter))
-                                    <a href="{{ route('laporanperbaikanpdf', $filter) }}"
+                                    <a href="{{ route('laporanevaluasipdf', $filter) }}"
                                         class="btn btn-danger btn-block">Export PDF</a>
                                 @else
-                                    <a href="{{ route('laporanperbaikanpdf', 'all') }}"
+                                    <a href="{{ route('laporanevaluasipdf', 'all') }}"
                                         class="btn btn-danger btn-block">Export PDF</a>
                                 @endif
                             </div>
@@ -70,31 +70,29 @@
                                 <tr>
                                 <th class="px-6 py-2">No</th>
                                 <th class="px-6 py-2">Tanggal</th>
-                                <th class="px-6 py-2">Alat</th>
                                 <th class="px-6 py-2">Teknisi</th>
-                                <th class="px-6 py-2">Lokasi</th>
-                                <th class="px-6 py-2">Kapasitas</th>
-                                <th class="px-6 py-2">Keterangan</th>
+                                <th class="px-6 py-2">Keterangan Kerja</th>
+                                <th class="px-6 py-2">Jumlah Tugas</th>
+                                <th class="px-6 py-2">Status Nilai</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {{-- @php
                               $no=1;
                               @endphp --}}
-                                @foreach ($laporanperbaikan as $index => $item)
+                                @foreach ($laporanevaluasi as $index => $item)
                                     <tr>
                                         <td class="px-6 py-6">{{ $loop->iteration }}</td>
                                         <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
-                                        <td class="px-6 py-2">{{ $item->masteralat->nama }}</td>
                                         <td class="px-6 py-2">{{ $item->masterteknisi->nama }}</td>
-                                        <td class="px-6 py-2">{{ $item->lokasi }}</td>
-                                        <td class="px-6 py-2">{{ $item->kapasitas }}</td>
-                                        <td class="px-6 py-2">{{ $item->keterangan }}</td>
+                                        <td class="px-6 py-2">{{ $item->keterangankerja }}</td>
+                                        <td class="px-6 py-2">{{ $item->jumlahtugas }}</td>
+                                        <td class="px-6 py-2">{{ $item->statusnilai }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $laporanperbaikan->links() }}
+                        {{ $laporanevaluasi->links() }}
                     </div>
                 </div>
             </div>

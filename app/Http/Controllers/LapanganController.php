@@ -42,13 +42,6 @@ public function create()
 
 public function store(Request $request)
 {
-    // Validasi permintaan
-    // $request->validate([
-    //     'id_masterrumahkaca' => 'required|string',
-    //     'tanggal' => 'required|date',
-    //     'deskripsi' => 'required|string',
-    //     'keperluandana' => 'required|numeric',
-    // ]);
 
     $data = $request->all();
 

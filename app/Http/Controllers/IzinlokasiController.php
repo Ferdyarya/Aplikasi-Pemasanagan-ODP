@@ -36,18 +36,9 @@ class IzinlokasiController extends Controller
 
 public function store(Request $request)
 {
-    // Validasi permintaan
-    // $request->validate([
-    //     'id_masterrumahkaca' => 'required|string',
-    //     'tanggal' => 'required|date',
-    //     'deskripsi' => 'required|string',
-    //     'keperluandana' => 'required|numeric',
-    // ]);
 
     $data = $request->all();
-
     // dd($data);
-
     izinlokasi::create($data);
 
     return redirect()->route('izinlokasi.index')->with('success', 'Data telah ditambahkan');

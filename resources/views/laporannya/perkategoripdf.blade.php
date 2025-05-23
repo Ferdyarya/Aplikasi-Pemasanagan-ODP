@@ -148,7 +148,7 @@
         Banjarmasin, <span class="formatted-date">{{ now()->format('d-m-Y') }}</span>
     </div>
     <p class="signature">(Pimpinan)</p>
-    <p class="signaturesewa">(Penyewa)</p>
+
 </body>
 
 </html>

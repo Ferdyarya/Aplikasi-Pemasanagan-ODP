@@ -5,12 +5,15 @@ use App\Models\Masterrumahkaca;
 use App\Models\Pembangunanrumahkaca;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\EvaluasiController;
+use App\Http\Controllers\JaringanController;
 use App\Http\Controllers\LapanganController;
 use App\Http\Controllers\KerusakanController;
 use App\Http\Controllers\PerbaikanController;
 use App\Http\Controllers\IzinlokasiController;
 use App\Http\Controllers\MasteralatController;
 use App\Http\Controllers\PemasanganController;
+use App\Http\Controllers\PergantianController;
 use App\Http\Controllers\MasterclientController;
 use App\Http\Controllers\MasterteknisiController;
 use App\Http\Controllers\SewarumahkacaController;
@@ -53,6 +56,9 @@ Route::prefix('dashboard')->middleware(['auth:sanctum'])->group(function() {
     Route::resource('kerusakan', KerusakanController::class);
     Route::resource('perbaikan', PerbaikanController::class);
     Route::resource('lapangan', LapanganController::class);
+    Route::resource('evaluasi', EvaluasiController::class);
+    Route::resource('jaringan', JaringanController::class);
+    Route::resource('pergantian', PergantianController::class);
 
     // Route::resource('sewarumahkaca', SewarumahkacaController::class);
     // Route::resource('pembangunanrumahkaca', PembangunanrumahkacaController::class);
@@ -82,6 +88,22 @@ Route::prefix('dashboard')->middleware(['auth:sanctum'])->group(function() {
     Route::get('laporannya/laporanlapangan', [LapanganController::class, 'cetaklapanganpertanggal'])->name('laporanlapangan');
     Route::get('laporanlapangan', [LapanganController::class, 'filterdatelapangan'])->name('laporanlapangan');
     Route::get('laporanlapanganpdf/filter={filter}', [LapanganController::class, 'laporanlapanganpdf'])->name('laporanlapanganpdf');
+
+    // New
+    // Evaluasi
+    Route::get('laporannya/laporanevaluasi', [EvaluasiController::class, 'cetakevaluasipertanggal'])->name('laporanevaluasi');
+    Route::get('laporanevaluasi', [EvaluasiController::class, 'filterdateevaluasi'])->name('laporanevaluasi');
+    Route::get('laporanevaluasipdf/filter={filter}', [EvaluasiController::class, 'laporanevaluasipdf'])->name('laporanevaluasipdf');
+
+    // Jaringan
+    Route::get('laporannya/laporanjaringan', [JaringanController::class, 'cetakjaringanpertanggal'])->name('laporanjaringan');
+    Route::get('laporanjaringan', [JaringanController::class, 'filterdatejaringan'])->name('laporanjaringan');
+    Route::get('laporanjaringanpdf/filter={filter}', [JaringanController::class, 'laporanjaringanpdf'])->name('laporanjaringanpdf');
+
+    // Pergantian
+    Route::get('laporannya/laporanpergantian', [PergantianController::class, 'cetakpergantianpertanggal'])->name('laporanpergantian');
+    Route::get('laporanpergantian', [PergantianController::class, 'filterdatepergantian'])->name('laporanpergantian');
+    Route::get('laporanpergantianpdf/filter={filter}', [PergantianController::class, 'laporanpergantianpdf'])->name('laporanpergantianpdf');
 
 
 
