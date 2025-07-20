@@ -11,7 +11,7 @@ class Pergantian extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id_masteralat','tanggal','lokasi','sebelumganti','sesudahganti','id_masterteknisi','keterangan'
+        'id_masteralat','tanggal','lokasi','fotosebelum','fotosesudah','id_masterteknisi','keterangan','kapasitas'
     ];
 
     public function masteralat()

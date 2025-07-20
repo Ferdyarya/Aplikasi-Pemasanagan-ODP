@@ -109,7 +109,7 @@
             $grandTotal = 0;
             @endphp --}}
 
-            @foreach ($laporansewarumahkaca as $item)
+            @foreach ($laporanevaluasi as $item)
                 <tr>
                     <td class="px-6 py-6">{{ $loop->iteration }}</td>
                     <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
@@ -124,7 +124,7 @@
     <div class="date-container">
         Banjarmasin, <span class="formatted-date">{{ now()->format('d-m-Y') }}</span>
     </div>
-    <p class="signature">(Pimpinan)</p>
+    <p class="signature">(Supervisor)</p>
 </body>
 
 </html>

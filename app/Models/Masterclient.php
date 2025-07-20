@@ -9,6 +9,6 @@ class Masterclient extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nama','alamat','notelp','email'
+        'nama','alamat','notelp','email','kodeclient'
     ];
 }

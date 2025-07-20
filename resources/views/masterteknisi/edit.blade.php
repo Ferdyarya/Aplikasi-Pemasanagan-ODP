@@ -32,6 +32,21 @@
                                         <input value="{{ $item->nama }}" type="text" name="nama" class="form-control"
                                             id="exampleInputPassword1" placeholder="Masukan Nama Teknisi" required>
                                      </div>
+                                      <div class="form-group">
+                                        <label for="alamat">Alamat</label>
+                                        <input value="{{ $item->alamat }}" type="text" name="alamat" class="form-control"
+                                            id="exampleInputPassword1" placeholder="Masukan Alamat" required>
+                                     </div>
+                                      <div class="form-group">
+                                        <label for="gmail">gmail</label>
+                                        <input value="{{ $item->gmail }}" type="email" name="gmail" class="form-control"
+                                            id="exampleInputPassword1" placeholder="Masukan Email" required>
+                                     </div>
+                                      <div class="form-group">
+                                        <label for="notelp">Nomor Telpon</label>
+                                        <input value="{{ $item->notelp }}" type="number" name="notelp" class="form-control"
+                                            id="exampleInputPassword1" placeholder="Masukan Nomor Telpon" required>
+                                     </div>
                                       <button type="submit" class="btn btn-warning">Submit</button>
                                   </form>
                               </div>

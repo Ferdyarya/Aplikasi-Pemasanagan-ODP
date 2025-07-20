@@ -15,39 +15,24 @@
                         {{-- {{ $dateNow->format('d F Y') }} --}}
                     </div>
                     <div class="card-body">
-                        {{-- <div class="row text-center">
-                            <div class="col-6 col-md-3">
-                                <h4 class="text-black"><b>Jumlah Penyewa</b></h4>
-                                <h3>{{$penyewacount}}</h3>
-                            </div>
+                        <div class="row text-center">
                             <div class="col-6 col-md-3">
                                 <h4 class="text-black"><b>Jumlah Pemasangan</b></h4>
-                                <h3>{{$totalrumahcount}}</h3>
+                                <h3>{{$pemasangancount}}</h3>
                             </div>
                             <div class="col-6 col-md-3">
-                                <h4 class="text-black"><b>Jumlah Pembangunan</b></h4>
-                                <h3>{{$pembangunancount}}</h3>
+                                <h4 class="text-black"><b>Jumlah Perbaikan</b></h4>
+                                <h3>{{$perbaikancount}}</h3>
                             </div>
                             <div class="col-6 col-md-3">
-                                <h4 class="text-black"><b>Jumlah Perawatan Rumah</b></h4>
-                                <h3>{{$perawatancount}}</h3>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="row text-center mt-4">
-
-                            <div class="col-6 col-md-3">
-                                <h4 class="text-dark"><b>Permohonan Surat</b></h4>
-                                <h3>/</h3>
+                                <h4 class="text-black"><b>Jumlah Kerusakan</b></h4>
+                                <h3>{{$kerusakancount}}</h3>
                             </div>
                             <div class="col-6 col-md-3">
-                                <h4 class="text-primary"><b>Surat Ditolak</b></h4>
-                                <h3>/</h3>
+                                <h4 class="text-black"><b>Jumlah Pemasangan Jaringan</b></h4>
+                                <h3>{{$jaringancount}}</h3>
                             </div>
-                            <div class="col-6 col-md-3">
-                                <h4 class="text-secondary"><b>Surat Terverifikasi</b></h4>
-                                <h3>/</h3>
-                            </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -56,9 +41,9 @@
         <div class="row mt-4">
             <div class="col-lg-4 col-sm-12 mb-4">
                 <div class="card">
-                    <img src="assets/rumahkaca.jpg" class="card-img-top" width="140px" alt="Pemasangan">
+                    <img src="assets/rumahkaca.jpg" class="card-img-top" width="140px" alt="ODP">
                     <div class="card-body text-center">
-                        <h4>Pemasangan</h4>
+                        <h4>ODP</h4>
                     </div>
                 </div>
             </div>
@@ -66,18 +51,18 @@
             <!-- Kerusakan -->
             <div class="col-lg-4 col-sm-12 mb-4">
                 <div class="card">
-                    <img src="assets/rumahkaca.jpg" class="card-img-top" alt="Kerusakan">
+                    <img src="assets/rumahkaca.jpg" class="card-img-top" alt="ODP">
                     <div class="card-body text-center">
-                        <h4>Kerusakan</h4>
+                        <h4>OTP</h4>
                     </div>
                 </div>
             </div>
             <!-- Perbaikan -->
             <div class="col-lg-4 col-sm-12 mb-4">
                 <div class="card">
-                    <img src="assets/rumahkaca.jpg" class="card-img-top" alt="Perbaikan">
+                    <img src="assets/rumahkaca.jpg" class="card-img-top" alt="ODP">
                     <div class="card-body text-center">
-                        <h4>Perbaikan</h4>
+                        <h4>OOP</h4>
                     </div>
                 </div>
             </div>

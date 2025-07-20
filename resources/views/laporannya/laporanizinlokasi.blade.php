@@ -97,8 +97,8 @@
                                                 <span class="p-2 mb-2 bg-danger text-black rounded">Ditolak</span> <!-- Red/orange for rejected -->
                                             @endif
                                             <!-- When status is neither 'Terverifikasi', 'Ditolak', nor 'Tunggu Verifikasi' -->
-                                            @if (!Auth::user()->hakakses('pimpinan'))
-                                                <span class="p-2 mb-2 bg-warning text-black rounded">Tunggu Verifikasi</span> <!-- Default to "Waiting for Verification" if not pimpinan -->
+                                            @if (!Auth::user()->hakakses('Supervisor'))
+                                                <span class="p-2 mb-2 bg-warning text-black rounded">Tunggu Verifikasi</span> <!-- Default to "Waiting for Verification" if not Supervisor -->
                                             @endif
                                         </td>
                                     </tr>

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Models\Jaringan;
+use App\Models\Masterclient;
+use App\Models\Masterteknisi;
 use Illuminate\Http\Request;
 
 class JaringanController extends Controller
@@ -36,17 +39,12 @@ public function create()
 
 public function store(Request $request)
 {
-    $data = Jaringan::create($request->all());
-        if($request->hasFile('fotohasil')) {
-            $request->file('fotohasil')->move('fotohasil/', $request->file('fotohasil')->getClientOriginalName());
-            $data->fotohasil = $request->file('fotohasil')->getClientOriginalName();
-            $data->save();
-        }
-    // Ambil data terakhir dari tabel jaringan
-    $lastjaringan = Jaringan::orderBy('id', 'desc')->first();
+    // Ambil data dari request
+    $data = $request->all();
 
-    // Generate nomor jaringan
-    if (!$lastjaringan) {
+    // Generate nomor pemasangan
+    $lastjaringan = Jaringan::orderBy('id', 'desc')->first();
+    if (!$lastjaringan || !$lastjaringan->nopemasangan) {
         $nopemasangan = 'PSG-0001';
     } else {
         $lastNumber = (int) substr($lastjaringan->nopemasangan, -4);
@@ -54,18 +52,22 @@ public function store(Request $request)
         $nopemasangan = 'PSG-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
     }
 
-    // Ambil semua data dari request
-    $data = $request->all();
-
-    // Tambahkan nomor jaringan ke dalam data
+    // Tambahkan ke data
     $data['nopemasangan'] = $nopemasangan;
 
-    // Simpan ke database
-    Jaringan::create($data);
+    // Proses file upload jika ada
+    if ($request->hasFile('fotohasil')) {
+        $filename = $request->file('fotohasil')->getClientOriginalName();
+        $request->file('fotohasil')->move('fotohasil/', $filename);
+        $data['fotohasil'] = $filename;
+    }
 
+    // Simpan hanya sekali
+    Jaringan::create($data);
 
     return redirect()->route('jaringan.index')->with('success', 'Data telah ditambahkan');
 }
+
 
 
 
@@ -137,14 +139,14 @@ public function store(Request $request)
 
     //Report
     //  Laporan Buku jaringan Filter
-     public function cetakpasangpertanggal()
+     public function cetakjaringanpertanggal()
      {
          $jaringan = Jaringan::Paginate(10);
 
          return view('laporannya.laporanjaringan', ['laporanjaringan' => $jaringan]);
      }
 
-     public function filterdatepasang(Request $request)
+     public function filterdatejaringan(Request $request)
      {
          $startDate = $request->input('dari');
          $endDate = $request->input('sampai');

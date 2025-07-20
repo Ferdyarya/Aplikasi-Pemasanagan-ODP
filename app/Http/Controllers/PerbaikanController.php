@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Models\Perbaikan;
 use App\Models\Masteralat;
 use Illuminate\Http\Request;

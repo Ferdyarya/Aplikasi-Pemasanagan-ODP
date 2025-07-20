@@ -83,10 +83,10 @@
                                         <span class="p-2 mb-2 bg-warning text-black rounded">Tunggu Verifikasi</span> <!-- Yellow for waiting verification -->
                                     @else
                                         <!-- When status is neither 'Terverifikasi', 'Ditolak', nor 'Tunggu Verifikasi' -->
-                                        @if (!Auth::user()->hakakses('pimpinan'))
-                                            <span class="p-2 mb-2 bg-warning text-black rounded">Tunggu Verifikasi</span> <!-- Default to "Waiting for Verification" if not pimpinan -->
+                                        @if (!Auth::user()->hakakses('Supervisor'))
+                                            <span class="p-2 mb-2 bg-warning text-black rounded">Tunggu Verifikasi</span> <!-- Default to "Waiting for Verification" if not Supervisor -->
                                         @endif
-                                        @if (Auth::user()->hakakses('pimpinan'))
+                                        @if (Auth::user()->hakakses('Supervisor'))
                                         <form action="{{ route('updateStatusRawat', $item->id) }}" method="POST">
                                             @csrf
                                             @method('PUT') <!-- Use PUT method to update the record -->

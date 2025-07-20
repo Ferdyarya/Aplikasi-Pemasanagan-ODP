@@ -30,9 +30,28 @@ class MasterteknisiController extends Controller
     {
         $data = $request->all();
 
+        $data['idteknisi'] = $this->generateidteknisi();
+
         Masterteknisi::create($data);
 
         return redirect()->route('masterteknisi.index')->with('success', 'Data Telah ditambahkan');
+    }
+
+    public function generateidteknisi()
+    {
+        $latestSurat = Masterclient::orderBy('created_at', 'desc')->first();
+
+        if (!$latestSurat) {
+            return 'TK-001';
+        }
+
+        $lastKode = $latestSurat->idteknisi;
+        $lastNumber = (int) substr($lastKode, -3);
+        $newNumber = $lastNumber + 1;
+
+        $newKode = 'TK-' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+
+        return $newKode;
     }
 
 

@@ -65,27 +65,31 @@
                                         <input value="{{ $item->lokasi }}" type="text" name="lokasi" class="form-control" placeholder="Masukkan Lokasi" required>
                                     </div>
                                     <div class="form-group">
+                                        <label for="kapasitas">Kapasitas</label>
+                                        <input value="{{ $item->kapasitas }}" type="text" name="kapasitas" class="form-control" placeholder="Masukkan Kapasitas" required>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="keterangan">Keterangan</label>
                                         <textarea value="{{ $item->keterangan }}" type="text" name="keterangan" class="form-control" placeholder="Masukkan Keterangan" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="sebelumganti">Masukan Foto Sebelum Ganti</label>
-                                        @if ($item->sebelumganti)
+                                        <label for="fotosebelum">Masukan Foto Sebelum Ganti</label>
+                                        @if ($item->fotosebelum)
                                             <div class="mb-2">
-                                                <img src="{{ asset('sebelumganti/' . $item->sebelumganti) }}" alt="Foto Sebelum" width="150">
+                                                <img src="{{ asset('fotosebelum/' . $item->fotosebelum) }}" alt="Foto Sebelum" width="150">
                                             </div>
                                         @endif
-                                        <input type="file" name="sebelumganti" class="form-control">
+                                        <input type="file" name="fotosebelum" class="form-control">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="sesudahganti">Masukan Foto Sesudah Ganti</label>
-                                        @if ($item->sesudahganti)
+                                        <label for="fotosesudah">Masukan Foto Sesudah Ganti</label>
+                                        @if ($item->fotosesudah)
                                             <div class="mb-2">
-                                                <img src="{{ asset('sesudahganti/' . $item->sesudahganti) }}" alt="Foto Sesudah" width="150">
+                                                <img src="{{ asset('fotosesudah/' . $item->fotosesudah) }}" alt="Foto Sesudah" width="150">
                                             </div>
                                         @endif
-                                        <input type="file" name="sesudahganti" class="form-control">
+                                        <input type="file" name="fotosesudah" class="form-control">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>

@@ -88,6 +88,7 @@
                                         <td class="px-6 py-2">{{ $item->masteralat->nama }}</td>
                                         <td class="px-6 py-2">{{ $item->masterteknisi->nama }}</td>
                                         <td class="px-6 py-2">{{ $item->lokasi }}</td>
+                                        <td class="px-6 py-2">{{ $item->kapasitas }}</td>
                                         <td class="px-6 py-2">{{ $item->keterangan }}</td>
                                     </tr>
                                 @endforeach

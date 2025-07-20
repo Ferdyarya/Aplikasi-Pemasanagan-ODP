@@ -35,7 +35,6 @@
                                         <form method="POST" action="{{ route('pergantian.store') }}"
                                             enctype="multipart/form-data">
                                             @csrf
-
                                             <div class="form-group mb-3">
                                                 <label for="id_masteralat">Alat</label>
                                                 <select class="form-select" name="id_masteralat" id="alat"
@@ -79,6 +78,17 @@
                                             </div>
 
                                             <div class="form-group">
+                                                <label for="kapasitas">Kapasitas</label>
+                                                <input type="text" name="kapasitas"
+                                                    class="form-control @error('kapasitas') is-invalid @enderror"
+                                                    id="kapasitas" placeholder="Masukkan Kapasitas" value="{{ old('kapasitas') }}"
+                                                    required>
+                                                @error('kapasitas')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group">
                                                 <label for="keterangan">Keterangan</label>
                                                 <textarea name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" id="keterangan"
                                                     placeholder="Masukkan keterangan" required>{{ old('keterangan') }}</textarea>
@@ -88,14 +98,14 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="sebelumganti">Masukan Foto Sebelum Ganti</label>
-                                                <input type="file" name="sebelumganti" class="form-control"
+                                                <label for="fotosebelum">Masukan Foto Sebelum Ganti</label>
+                                                <input type="file" name="fotosebelum" class="form-control"
                                                     placeholder="Masukan Foto Sebelum Ganti">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="sesudahganti">Masukan Foto Sesudah Ganti</label>
-                                                <input type="file" name="sesudahganti" class="form-control"
+                                                <label for="fotosesudah">Masukan Foto Sesudah Ganti</label>
+                                                <input type="file" name="fotosesudah" class="form-control"
                                                     placeholder="Masukan Foto Sesudah Ganti">
                                             </div>
 

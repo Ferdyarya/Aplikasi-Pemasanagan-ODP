@@ -33,6 +33,30 @@
                                               <div class="invalid-feedback">{{ $message }}</div>
                                           @enderror
                                       </div>
+                                      <div class="form-group">
+                                          <label for="alamat">Alamat</label>
+                                          <input type="text" name="alamat" class="form-control @error('alamat') is-invalid @enderror" id="alamat"
+                                              aria-describedby="emailHelp" placeholder="Masukan Alamat" value="{{ old('alamat') }}" required>
+                                          @error('alamat')
+                                              <div class="invalid-feedback">{{ $message }}</div>
+                                          @enderror
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="gmail">Gmail</label>
+                                          <input type="email" name="gmail" class="form-control @error('gmail') is-invalid @enderror" id="gmail"
+                                              aria-describedby="emailHelp" placeholder="Masukan Email" value="{{ old('gmail') }}" required>
+                                          @error('gmail')
+                                              <div class="invalid-feedback">{{ $message }}</div>
+                                          @enderror
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="notelp">Nomor Telpon</label>
+                                          <input type="number" name="notelp" class="form-control @error('notelp') is-invalid @enderror" id="notelp"
+                                              aria-describedby="emailHelp" placeholder="Masukan Nomor Telpon" value="{{ old('notelp') }}" required>
+                                          @error('notelp')
+                                              <div class="invalid-feedback">{{ $message }}</div>
+                                          @enderror
+                                      </div>
                                       <button type="submit" class="btn btn-warning">Submit</button>
                                   </form>
                               </div>

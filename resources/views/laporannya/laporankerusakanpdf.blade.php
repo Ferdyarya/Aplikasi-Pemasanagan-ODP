@@ -110,7 +110,7 @@
             $grandTotal = 0;
             @endphp --}}
 
-            @foreach ($laporansewarumahkaca as $item)
+            @foreach ($laporankerusakan as $item)
                 <tr>
                     <td class="px-6 py-6">{{ $loop->iteration }}</td>
                     <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
@@ -118,7 +118,7 @@
                     <td class="px-6 py-2">{{ $item->masterteknisi->nama }}</td>
                     <td class="px-6 py-2">{{ $item->lokasi }}</td>
                     <td class="px-6 py-2">{{ $item->kapasitas }}</td>
-                    <td class="px-6 py-2">{{ $item->keterangan }}</td>
+                    <td class="px-6 py-2">{{ $item->ketkerusakan }}</td>
                     {{-- <td class="px-6 py-2">
                         <!-- Display status as a badge if it's already set -->
                         @if($item->status == 'Terverifikasi')
@@ -134,7 +134,7 @@
     <div class="date-container">
         Banjarmasin, <span class="formatted-date">{{ now()->format('d-m-Y') }}</span>
     </div>
-    <p class="signature">(Pimpinan)</p>
+    <p class="signature">(Supervisor)</p>
 </body>
 
 </html>

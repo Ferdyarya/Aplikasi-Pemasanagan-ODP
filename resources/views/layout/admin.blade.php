@@ -133,7 +133,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('pergantian.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-menu"></i>
                         </span>
@@ -141,7 +141,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('evaluasi.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-menu"></i>
                         </span>
@@ -149,7 +149,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('jaringan.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-menu"></i>
                         </span>
@@ -203,7 +203,7 @@
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="/" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('laporanpergantian') }}" aria-expanded="false">
                       <span>
                         <i class="ti ti-report"></i>
                       </span>
@@ -211,7 +211,7 @@
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="/" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('laporanevaluasi') }}" aria-expanded="false">
                       <span>
                         <i class="ti ti-report"></i>
                       </span>
@@ -219,7 +219,7 @@
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="/" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('laporanjaringan') }}" aria-expanded="false">
                       <span>
                         <i class="ti ti-report"></i>
                       </span>

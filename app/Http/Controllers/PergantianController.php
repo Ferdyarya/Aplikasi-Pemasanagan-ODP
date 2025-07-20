@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Models\Masteralat;
 use App\Models\Pergantian;
 use Illuminate\Http\Request;
@@ -41,14 +42,14 @@ class PergantianController extends Controller
     public function store(Request $request)
     {
         $data = Pergantian::create($request->all());
-        if($request->hasFile('sebelumganti')) {
-            $request->file('sebelumganti')->move('sebelumganti/', $request->file('sebelumganti')->getClientOriginalName());
-            $data->sebelumganti = $request->file('sebelumganti')->getClientOriginalName();
+        if($request->hasFile('fotosebelum')) {
+            $request->file('fotosebelum')->move('fotosebelum/', $request->file('fotosebelum')->getClientOriginalName());
+            $data->fotosebelum = $request->file('fotosebelum')->getClientOriginalName();
             $data->save();
         }
-        if($request->hasFile('sesudahganti')) {
-            $request->file('sesudahganti')->move('sesudahganti/', $request->file('sesudahganti')->getClientOriginalName());
-            $data->sesudahganti = $request->file('sesudahganti')->getClientOriginalName();
+        if($request->hasFile('fotosesudah')) {
+            $request->file('fotosesudah')->move('fotosesudah/', $request->file('fotosesudah')->getClientOriginalName());
+            $data->fotosesudah = $request->file('fotosesudah')->getClientOriginalName();
             $data->save();
         }
 

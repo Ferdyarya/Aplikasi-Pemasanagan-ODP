@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('masterclients', function (Blueprint $table) {
             $table->id();
+            $table->string('kodeclient')->nullable();
             $table->string('nama');
             $table->string('alamat');
             $table->string('notelp');

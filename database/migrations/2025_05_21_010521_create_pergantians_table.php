@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('id_masteralat');
             $table->string('id_masterteknisi');
             $table->string('keterangan');
+            $table->string('kapasitas');
             $table->string('fotosebelum');
             $table->string('fotosesudah');
             $table->timestamps();

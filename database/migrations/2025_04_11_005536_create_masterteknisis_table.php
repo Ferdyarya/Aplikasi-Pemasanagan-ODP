@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('masterteknisis', function (Blueprint $table) {
             $table->id();
+            $table->string('idteknisi')->nullable();
             $table->string('nama');
+            $table->string('alamat');
+            $table->string('gmail');
+            $table->string('notelp');
             $table->timestamps();
         });
     }

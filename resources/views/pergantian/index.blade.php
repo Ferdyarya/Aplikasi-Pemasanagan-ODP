@@ -51,8 +51,8 @@
                                 <th class="px-6 py-2">Alat</th>
                                 <th class="px-6 py-2">Teknisi</th>
                                 <th class="px-6 py-2">Lokasi</th>
-                                <th class="px-6 py-2">Kapasitas</th>
                                 <th class="px-6 py-2">Keterangan</th>
+                                <th class="px-6 py-2">Kapasitas</th>
                                 <th class="px-6 py-2">Foto Sebelum Ganti</th>
                                 <th class="px-6 py-2">Foto Sesudah Ganti</th>
                                 <th class="px-6 py-2">Action</th>
@@ -69,12 +69,13 @@
                                 <td class="px-6 py-2">{{ $item->masteralat->nama }}</td>
                                 <td class="px-6 py-2">{{ $item->masterteknisi->nama }}</td>
                                 <td class="px-6 py-2">{{ $item->lokasi }}</td>
+                                <td class="px-6 py-2">{{ $item->kapasitas }}</td>
                                 <td class="px-6 py-2">{{ $item->keterangan }}</td>
                                 <td class="px-6 py-2">
-                                    <img src="{{ asset('sebelumganti/'.$item->sebelumganti) }}" style="max-width: 150px; height: 120px;">
+                                    <img src="{{ asset('fotosebelum/'.$item->fotosebelum) }}" style="max-width: 150px; height: 120px;">
                                 </td>
                                 <td class="px-6 py-2">
-                                    <img src="{{ asset('sesudahganti/'.$item->sesudahganti) }}" style="max-width: 150px; height: 120px;">
+                                    <img src="{{ asset('fotosesudah/'.$item->fotosesudah) }}" style="max-width: 150px; height: 120px;">
                                 </td>
                                 <td class="px-6 py-2">
                                     <a href="{{ route('pergantian.edit', $item->id) }}" class="btn btn-primary">Edit</a>

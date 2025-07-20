@@ -70,17 +70,16 @@
                                 <td class="px-6 py-2">{{ $item->lokasi }}</td>
                                 <td class="px-6 py-2">
                                     @if($item->status == 'Terverifikasi')
-                                        <span class="p-2 mb-2 bg-success text-black rounded">Terverifikasi</span> <!-- Green for verified -->
+                                        <span class="p-2 mb-2 bg-success text-black rounded">Terverifikasi</span>
                                     @elseif($item->status == 'Ditolak')
-                                        <span class="p-2 mb-2 bg-danger text-black rounded">Ditolak</span> <!-- Red/orange for rejected -->
+                                        <span class="p-2 mb-2 bg-danger text-black rounded">Ditolak</span>
                                     @elseif($item->status == 'Tunggu Verifikasi')
-                                        <span class="p-2 mb-2 bg-warning text-black rounded">Tunggu Verifikasi</span> <!-- Yellow for waiting verification -->
+                                        <span class="p-2 mb-2 bg-warning text-black rounded">Tunggu Verifikasi</span>
                                     @else
-                                        <!-- When status is neither 'Terverifikasi', 'Ditolak', nor 'Tunggu Verifikasi' -->
-                                        @if (!Auth::user()->hakakses('pimpinan'))
-                                            <span class="p-2 mb-2 bg-warning text-black rounded">Tunggu Verifikasi</span> <!-- Default to "Waiting for Verification" if not pimpinan -->
+                                        @if (!Auth::user()->hakakses('supervisor'))
+                                            <span class="p-2 mb-2 bg-warning text-black rounded">Tunggu Verifikasi</span>
                                         @endif
-                                        @if (Auth::user()->hakakses('pimpinan'))
+                                        @if (Auth::user()->hakakses('supervisor'))
                                         <form action="{{ route('updateStatusRawat', $item->id) }}" method="POST">
                                             @csrf
                                             @method('PUT') <!-- Use PUT method to update the record -->

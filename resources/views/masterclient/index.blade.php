@@ -55,6 +55,7 @@
                           <thead>
                               <tr>
                                   <th class="px-6 py-2">No</th>
+                                  <th class="px-6 py-2">Kode Client</th>
                                   <th class="px-6 py-2">Nama</th>
                                   <th class="px-6 py-2">Alamat</th>
                                   <th class="px-6 py-2">No Telepon</th>
@@ -69,6 +70,7 @@
                               @foreach ($masterclient as $index => $item)
                               <tr>
                                   <th class="px-6 py-2">{{ $index + $masterclient->firstItem() }}</th>
+                                  <td class="px-6 py-2">{{ $item->kodeclient }}</td>
                                   <td class="px-6 py-2">{{ $item->nama }}</td>
                                   <td class="px-6 py-2">{{ $item->alamat }}</td>
                                   <td class="px-6 py-2">{{ $item->notelp }}</td>

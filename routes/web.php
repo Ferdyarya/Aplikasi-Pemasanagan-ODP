@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Jaringan;
+use App\Models\Kerusakan;
+use App\Models\Perbaikan;
+use App\Models\Pemasangan;
 use App\Models\Sewarumahkaca;
 use App\Models\Masterrumahkaca;
 use App\Models\Pembangunanrumahkaca;
@@ -31,13 +35,13 @@ use App\Http\Controllers\PembangunanrumahkacaController;
 */
 
 Route::get('/', function () {
-    // $penyewacount = Sewarumahkaca::count();
-    // $totalrumahcount = Masterrumahkaca::count();
-    // $pembangunancount = Pembangunanrumahkaca::count();
-    // $perawatancount = Rawatrumahkaca::count();
+    $pemasangancount = Pemasangan::count();
+    $perbaikancount = Perbaikan::count();
+    $kerusakancount = Kerusakan::count();
+    $jaringancount = Jaringan::count();
 
 
-    return view('dashboard');
+    return view('dashboard',compact('pemasangancount','perbaikancount','kerusakancount','jaringancount'));
 })->middleware('auth');
 
 

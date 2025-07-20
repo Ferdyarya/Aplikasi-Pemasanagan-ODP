@@ -9,6 +9,6 @@ class Masterteknisi extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nama'
+        'nama','idteknisi','alamat','gmail','notelp'
    ];
 }
