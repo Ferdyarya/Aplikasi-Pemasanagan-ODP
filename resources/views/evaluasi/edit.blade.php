@@ -37,14 +37,19 @@
                                     @method('PUT')
 
                                     <div class="form-group mb-3">
-                                        <label for="id_masterteknisi">Teknisi</label>
-                                        <select class="form-select" name="id_masterteknisi" id="teknisi" style="border-radius: 8px;" data-placeholder="Pilih Rumah Kaca">
-                                            <option></option>
-                                            @foreach ($masterteknisi as $item)
-                                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+    <label for="id_masterteknisi">Teknisi</label>
+    <select class="form-select" name="id_masterteknisi" id="teknisi"
+        style="border-radius: 8px;" data-placeholder="Pilih Teknisi" required>
+        <option value="">-- Pilih Teknisi --</option>
+        @foreach ($masterteknisi as $item)
+            <option value="{{ $item->id }}"
+                {{ old('id_masterteknisi', $data->id_masterteknisi ?? '') == $item->id ? 'selected' : '' }}>
+                {{ $item->idteknisi }} - {{ $item->nama }} - {{ $item->notelp }}
+            </option>
+        @endforeach
+    </select>
+</div>
+
 
                                     <div class="form-group">
                                         <label for="tanggal">Tanggal</label>

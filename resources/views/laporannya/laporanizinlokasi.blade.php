@@ -68,13 +68,13 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                <th class="px-6 py-2">No</th>
-                                <th class="px-6 py-2">Tanggal</th>
-                                <th class="px-6 py-2">Teknisi</th>
-                                <th class="px-6 py-2">Tanggal Kunjungan</th>
-                                <th class="px-6 py-2">Deskripsi</th>
-                                <th class="px-6 py-2">Dana</th>
-                                <th class="px-6 py-2">Status</th>
+                                    <th class="px-6 py-2">No</th>
+                                    <th class="px-6 py-2">Tanggal</th>
+                                    <th class="px-6 py-2">Teknisi</th>
+                                    <th class="px-6 py-2">Tujuan</th>
+                                    <th class="px-6 py-2">Alasan</th>
+                                    <th class="px-6 py-2">Lokasi</th>
+                                    <th class="px-6 py-2">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,21 +84,26 @@
                                 @foreach ($laporanizinlokasi as $index => $item)
                                     <tr>
                                         <td class="px-6 py-6">{{ $loop->iteration }}</td>
-                                        <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tglkunjungan)->format('d M Y') }}</td>
+                                        <td class="px-6 py-2">
+                                            {{ \Carbon\Carbon::parse($item->tglkunjungan)->format('d M Y') }}</td>
                                         <td class="px-6 py-2">{{ $item->masterteknisi->nama }}</td>
                                         <td class="px-6 py-2">{{ $item->tujuan }}</td>
                                         <td class="px-6 py-2">{{ $item->alasan }}</td>
                                         <td class="px-6 py-2">{{ $item->lokasi }}</td>
                                         <td class="px-6 py-2">
                                             <!-- Display status as a badge if it's already set -->
-                                            @if($item->status == 'Terverifikasi')
-                                                <span class="p-2 mb-2 bg-success text-black rounded">Terverifikasi</span> <!-- Green for verified -->
+                                            @if ($item->status == 'Terverifikasi')
+                                                <span class="p-2 mb-2 bg-success text-black rounded">Terverifikasi</span>
+                                                <!-- Green for verified -->
                                             @elseif($item->status == 'Ditolak')
-                                                <span class="p-2 mb-2 bg-danger text-black rounded">Ditolak</span> <!-- Red/orange for rejected -->
+                                                <span class="p-2 mb-2 bg-danger text-black rounded">Ditolak</span>
+                                                <!-- Red/orange for rejected -->
                                             @endif
                                             <!-- When status is neither 'Terverifikasi', 'Ditolak', nor 'Tunggu Verifikasi' -->
                                             @if (!Auth::user()->hakakses('Supervisor'))
-                                                <span class="p-2 mb-2 bg-warning text-black rounded">Tunggu Verifikasi</span> <!-- Default to "Waiting for Verification" if not Supervisor -->
+                                                <span class="p-2 mb-2 bg-warning text-black rounded">Tunggu
+                                                    Verifikasi</span>
+                                                <!-- Default to "Waiting for Verification" if not Supervisor -->
                                             @endif
                                         </td>
                                     </tr>

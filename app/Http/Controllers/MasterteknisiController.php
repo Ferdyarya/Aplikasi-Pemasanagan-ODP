@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Masterclient;
 use Illuminate\Http\Request;
 use App\Models\Masterteknisi;
 

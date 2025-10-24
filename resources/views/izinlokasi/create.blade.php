@@ -39,13 +39,16 @@
                                             <div class="form-group mb-3">
                                                 <label for="id_masterteknisi">Teknisi</label>
                                                 <select class="form-select" name="id_masterteknisi" id="teknisi"
-                                                    style="border-radius: 8px;" data-placeholder="Pilih Teknisi">
-                                                    <option></option>
+                                                    style="border-radius: 8px;" data-placeholder="Pilih Teknisi" required>
+                                                    <option value="">-- Pilih Teknisi --</option>
                                                     @foreach ($masterteknisi as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                        <option value="{{ $item->id }}">
+                                                            {{ $item->idteknisi }} - {{ $item->nama }} - {{ $item->notelp }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div>
+
 
                                             <div class="form-group">
                                                 <label for="tglkunjungan">Tanggal Kunjungan</label>
@@ -56,13 +59,13 @@
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
-{{--  --}}
+
                                             <div class="form-group">
                                                 <label for="tujuan">Tujuan Alasan</label>
                                                 <input type="text" name="tujuan"
                                                     class="form-control @error('tujuan') is-invalid @enderror"
-                                                    id="tujuan" placeholder="Masukkan Tujuan"
-                                                    value="{{ old('tujuan') }}" required>
+                                                    id="tujuan" placeholder="Masukkan Tujuan" value="{{ old('tujuan') }}"
+                                                    required>
                                                 @error('tujuan')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
@@ -72,8 +75,8 @@
                                                 <label for="alasan">Alasan</label>
                                                 <input type="text" name="alasan"
                                                     class="form-control @error('alasan') is-invalid @enderror"
-                                                    id="alasan" placeholder="Masukkan alasan"
-                                                    value="{{ old('alasan') }}" required>
+                                                    id="alasan" placeholder="Masukkan alasan" value="{{ old('alasan') }}"
+                                                    required>
                                                 @error('alasan')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
@@ -151,4 +154,6 @@
             placeholder: $(this).data('placeholder'),
         });
     </script>
+    
+
 @endsection

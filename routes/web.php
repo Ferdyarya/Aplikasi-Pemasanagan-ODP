@@ -131,7 +131,7 @@ Route::prefix('dashboard')->middleware(['auth:sanctum'])->group(function() {
 
     // Status Route
     Route::put('/izinlokasi/{id}/status', [IzinlokasiController::class, 'updateStatusLokasi'])->name('updateStatusLokasi');
-    Route::put('/pembangunanrumahkaca/{id}/status', [PembangunanrumahkacaController::class, 'updateStatus'])->name('updateStatus');
+    // Route::put('/pembangunanrumahkaca/{id}/status', [PembangunanrumahkacaController::class, 'updateStatus'])->name('updateStatus');
     // Pembangunan Rumah Kaca
 
 

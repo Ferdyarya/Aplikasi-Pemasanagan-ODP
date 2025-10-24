@@ -7,13 +7,15 @@ use App\Models\Perbaikan;
 use App\Models\Masteralat;
 use Illuminate\Http\Request;
 use App\Models\Masterteknisi;
+use App\Mail\PerbaikanCreatedMail;
+use Illuminate\Support\Facades\Mail;
 
 class PerbaikanController extends Controller
 {
     public function index(Request $request)
     {
         if ($request->has('search')) {
-            $perbaikan = Perbaikan::whereHas('masteralat', function($query) use ($request) {
+            $perbaikan = Perbaikan::whereHas('masteralat', function ($query) use ($request) {
                 $query->where('nama', 'LIKE', '%' . $request->search . '%');
             })->paginate(10);
         } else {
@@ -21,10 +23,9 @@ class PerbaikanController extends Controller
         }
 
         return view('perbaikan.index', [
-            'perbaikan' => $perbaikan
+            'perbaikan' => $perbaikan,
         ]);
     }
-
 
     public function create()
     {
@@ -38,30 +39,27 @@ class PerbaikanController extends Controller
         return view('perbaikan.create')->with('success', 'Data Telah ditambahkan');
     }
 
-
     public function store(Request $request)
     {
         $data = Perbaikan::create($request->all());
-        if($request->hasFile('fotosebelum')) {
+        if ($request->hasFile('fotosebelum')) {
             $request->file('fotosebelum')->move('fotosebelum/', $request->file('fotosebelum')->getClientOriginalName());
             $data->fotosebelum = $request->file('fotosebelum')->getClientOriginalName();
             $data->save();
         }
-        if($request->hasFile('fotosesudah')) {
+        if ($request->hasFile('fotosesudah')) {
             $request->file('fotosesudah')->move('fotosesudah/', $request->file('fotosesudah')->getClientOriginalName());
             $data->fotosesudah = $request->file('fotosesudah')->getClientOriginalName();
             $data->save();
         }
 
-        return redirect()->route('perbaikan.index')->with('success', 'Data Telah ditambahkan');
+        // Kirim notifikasi email
+        Mail::to('alzahsi1212@gmail.com')->send(new PerbaikanCreatedMail($data));
+
+        return redirect()->route('perbaikan.index')->with('success', 'Data Telah ditambahkan dan email terkirim!');
     }
 
-
-    public function show($id)
-    {
-
-    }
-
+    public function show($id) {}
 
     public function edit(Perbaikan $perbaikan)
     {
@@ -75,7 +73,6 @@ class PerbaikanController extends Controller
         ]);
     }
 
-
     public function update(Request $request, Perbaikan $perbaikan)
     {
         $data = $request->all();
@@ -85,9 +82,7 @@ class PerbaikanController extends Controller
         //dd($data);
 
         return redirect()->route('perbaikan.index')->with('success', 'Data Telah diupdate');
-
     }
-
 
     public function destroy(Perbaikan $perbaikan)
     {
@@ -109,12 +104,10 @@ class PerbaikanController extends Controller
         $startDate = $request->input('dari');
         $endDate = $request->input('sampai');
 
-         if ($startDate == '' && $endDate == '') {
+        if ($startDate == '' && $endDate == '') {
             $laporanperbaikan = Perbaikan::paginate(10);
         } else {
-            $laporanperbaikan = Perbaikan::whereDate('tanggal','>=',$startDate)
-                                        ->whereDate('tanggal','<=',$endDate)
-                                        ->paginate(10);
+            $laporanperbaikan = Perbaikan::whereDate('tanggal', '>=', $startDate)->whereDate('tanggal', '<=', $endDate)->paginate(10);
         }
         session(['filter_start_date' => $startDate]);
         session(['filter_end_date' => $endDate]);
@@ -122,8 +115,7 @@ class PerbaikanController extends Controller
         return view('laporannya.laporanperbaikan', compact('laporanperbaikan'));
     }
 
-
-    public function laporanperbaikanpdf(Request $request )
+    public function laporanperbaikanpdf(Request $request)
     {
         $startDate = session('filter_start_date');
         $endDate = session('filter_end_date');
@@ -131,9 +123,7 @@ class PerbaikanController extends Controller
         if ($startDate == '' && $endDate == '') {
             $laporanperbaikan = Perbaikan::all();
         } else {
-            $laporanperbaikan = Perbaikan::whereDate('tanggal', '>=', $startDate)
-                                            ->whereDate('tanggal', '<=', $endDate)
-                                            ->get();
+            $laporanperbaikan = Perbaikan::whereDate('tanggal', '>=', $startDate)->whereDate('tanggal', '<=', $endDate)->get();
         }
 
         // Render view dengan menyertakan data laporan dan informasi filter

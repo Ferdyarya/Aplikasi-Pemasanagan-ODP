@@ -79,7 +79,8 @@
                 <td><img src="{{ public_path('assets/logo1.png') }}" alt="logo" width="140px"></td>
                 <td class="tengah">
                     <h4> TELKOM AKSES </h4>
-                    <p>Jalan Jenderal Ahmad Yani KM 23, Landasan Ulin, Landasan Ulin Barat, Kec. Liang Anggang, Kota Banjar Baru, Kalimantan Selatan 70723</p>
+                    <p>Jalan Jenderal Ahmad Yani KM 23, Landasan Ulin, Landasan Ulin Barat, Kec. Liang Anggang, Kota
+                        Banjar Baru</p>
                 </td>
             </tr>
         </table>
@@ -97,11 +98,12 @@
         <thead>
             <tr>
                 <th class="px-6 py-2">No</th>
-                <th class="px-6 py-2">Kategori</th>
-                <th class="px-6 py-2">Nama Penyewa</th>
-                <th class="px-6 py-2">Keperluan</th>
-                <th class="px-6 py-2">Tanggal Mulai</th>
-                <th class="px-6 py-2">Tanggal Berakhir</th>
+                <th class="px-6 py-2">Tanggal</th>
+                <th class="px-6 py-2">Teknisi</th>
+                <th class="px-6 py-2">Tujuan</th>
+                <th class="px-6 py-2">Alasan</th>
+                <th class="px-6 py-2">Lokasi</th>
+                <th class="px-6 py-2">Status</th>
             </tr>
         </thead>
         <tbody>
@@ -119,10 +121,12 @@
                     <td class="px-6 py-2">{{ $item->lokasi }}</td>
                     <td class="px-6 py-2">
                         <!-- Display status as a badge if it's already set -->
-                        @if($item->status == 'Terverifikasi')
-                            <span class="p-2 mb-2 bg-success text-black rounded">Terverifikasi</span> <!-- Green for verified -->
+                        @if ($item->status == 'Terverifikasi')
+                            <span class="p-2 mb-2 bg-success text-black rounded">Terverifikasi</span>
+                            <!-- Green for verified -->
                         @elseif($item->status == 'Ditolak')
-                            <span class="p-2 mb-2 bg-danger text-black rounded">Ditolak</span> <!-- Red/orange for rejected -->
+                            <span class="p-2 mb-2 bg-danger text-black rounded">Ditolak</span>
+                            <!-- Red/orange for rejected -->
                         @endif
                     </td>
                 </tr>
