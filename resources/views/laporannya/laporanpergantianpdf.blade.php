@@ -99,11 +99,15 @@
             <tr>
                 <th class="px-6 py-2">No</th>
                 <th class="px-6 py-2">Tanggal</th>
-                <th class="px-6 py-2">Alat Terpasang</th>
+                <th class="px-6 py-2">Alat</th>
                 <th class="px-6 py-2">Teknisi</th>
                 <th class="px-6 py-2">Lokasi</th>
-                <th class="px-6 py-2">Kapasitas</th>
                 <th class="px-6 py-2">Keterangan</th>
+                <th class="px-6 py-2">Kapasitas</th>
+                <th class="px-6 py-2">Biaya</th>
+                <th class="px-6 py-2">Waktu Mulai</th>
+                <th class="px-6 py-2">Waktu Selesai</th>
+                <th class="px-6 py-2">Total Jam</th>
             </tr>
         </thead>
         <tbody>
@@ -112,14 +116,30 @@
             @endphp --}}
 
             @foreach ($laporanpergantian as $item)
+            @php
+                    $mulai = \Carbon\Carbon::parse($item->waktumulai);
+                    $selesai = \Carbon\Carbon::parse($item->waktuselesai);
+                    $total = $selesai->diff($mulai); // Selisih waktu
+                @endphp
                 <tr>
                     <td class="px-6 py-6">{{ $loop->iteration }}</td>
                     <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
-                    <td class="px-6 py-2">{{ $item->masterpemasangan->masteralat->nama }}</td>
-                    <td class="px-6 py-2">{{ $item->masterpemasangan->masterteknisi->nama }}</td>
+                    <td class="px-6 py-2">{{ $item->masterperbaikan->masterpemasangan->masteralat->nama }}</td>
+                    <td class="px-6 py-2">{{ $item->masterperbaikan->masterpemasangan->masterteknisi->nama }}</td>
                     <td class="px-6 py-2">{{ $item->lokasi }}</td>
-                    <td class="px-6 py-2">{{ $item->masterpemasangan->kapasitas }}</td>
                     <td class="px-6 py-2">{{ $item->keterangan }}</td>
+                    <td class="px-6 py-2">{{ $item->masterperbaikan->masterpemasangan->kapasitas }}</td>
+                    <td class="px-6 py-2">{{ $item->biaya }}</td>
+                    <td class="px-6 py-2">{{ $item->waktumulai }}</td>
+                    <td class="px-6 py-2">{{ $item->waktuselesai }}</td>
+                    @php
+                                            $mulai = \Carbon\Carbon::parse($item->waktumulai);
+                                            $selesai = \Carbon\Carbon::parse($item->waktuselesai);
+                                            $total = $selesai->diff($mulai); // selisih waktu
+                                        @endphp
+                                        <td class="px-6 py-2">
+                                            {{ $total->h }} jam {{ $total->i }} menit
+                                        </td>
                 </tr>
             @endforeach
         </tbody>

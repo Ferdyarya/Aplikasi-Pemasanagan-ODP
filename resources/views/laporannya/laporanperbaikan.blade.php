@@ -75,6 +75,8 @@
                                     <th class="px-6 py-2">Lokasi</th>
                                     <th class="px-6 py-2">Kapasitas</th>
                                     <th class="px-6 py-2">Keterangan</th>
+                                    <th class="px-6 py-2">Waktu Mulai</th>
+                                    <th class="px-6 py-2">Waktu Selesai</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,6 +93,8 @@
                                         <td class="px-6 py-2">{{ $item->lokasi }}</td>
                                         <td class="px-6 py-2">{{ $item->masterpemasangan->kapasitas }}</td>
                                         <td class="px-6 py-2">{{ $item->keterangan }}</td>
+                                        <td class="px-6 py-2">{{ $item->waktumulai }}</td>
+                                        <td class="px-6 py-2">{{ $item->waktuselesai }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
