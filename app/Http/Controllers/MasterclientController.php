@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Masterclient;
 use Illuminate\Http\Request;
+use App\Models\Masterteknisi;
 
 class MasterclientController extends Controller
 {
     public function index(Request $request)
     {
         if ($request->has('search')) {
-            $Masterclient = Masterclient::where('nama', 'LIKE', '%' . $request->search . '%')->paginate(10);
+            $masterclient = Masterclient::where('nama', 'LIKE', '%' . $request->search . '%')->paginate(10);
         } else {
             $masterclient = Masterclient::paginate(10);
         }
@@ -25,15 +26,17 @@ class MasterclientController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $data = $request->all();
+{
+    $data = $request->all();
 
-        $data['kodeclient'] = $this->generatekodeclient();
+    $data['kodeclient'] = $this->generatekodeclient();
 
-        Masterteknisi::create($data);
+    Masterclient::create($data);
 
-        return redirect()->route('masterteknisi.index')->with('success', 'Data Telah ditambahkan');
-    }
+    // Redirect kembali ke index dengan pesan sukses
+    return redirect()->route('masterclient.index')->with('success', 'Data Telah ditambahkan');
+}
+
 
     public function generatekodeclient()
     {

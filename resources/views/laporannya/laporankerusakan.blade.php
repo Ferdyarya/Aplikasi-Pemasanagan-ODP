@@ -37,28 +37,37 @@
 
 
                     <div class="container">
-                        <form action="{{ route('laporankerusakan') }}" method="GET" class="row">
-                            <div class="col-md-3">
-                                <label for="dari">Start Date:</label>
-                                <input type="date" id="dari" name="dari" class="form-control">
-                            </div>
-
-                            <div class="col-md-3">
-                                <label for="sampai">End Date:</label>
-                                <input type="date" id="sampai" name="sampai" class="form-control">
-                            </div>
-
-                            <div class="col-md-1 pt-4">
-                                <button type="submit" class="btn btn-success">Submit</button>
+                        <form action="{{ route('laporankerusakankategori') }}" method="GET" class="row">
+                            <div class="col-md-8 mb-2">
+                                <div class="form-group">
+                                    <label for="filter" class="sr-only">Filter</label>
+                                    <select name="filter" id="filter" class="form-control"
+                                        onchange="this.form.submit()">
+                                        <option value="all" {{ ($filter ?? 'all') === 'all' ? 'selected' : '' }}>SHOW ALL
+                                        </option>
+                                        @forelse ($laporankerusakan ?? [] as $item)
+                                            <option value="{{ $item->lokasi }}"
+                                                {{ ($filter ?? '') == $item->lokasi ? 'selected' : '' }}>
+                                                {{ strtoupper($item->lokasi) }}
+                                            </option>
+                                        @empty
+                                            <option value="" disabled>Data Tidak Tersedia</option>
+                                        @endforelse
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="col-md-2 pt-4">
                                 @if (!empty($filter))
-                                    <a href="{{ route('laporankerusakanpdf', $filter) }}"
-                                        class="btn btn-danger btn-block">Export PDF</a>
+                                    <a href="{{ route('laporankerusakanpdf', ['filter' => $filter]) }}"
+                                        class="btn btn-danger btn-block">
+                                        Export PDF
+                                    </a>
                                 @else
-                                    <a href="{{ route('laporankerusakanpdf', 'all') }}"
-                                        class="btn btn-danger btn-block">Export PDF</a>
+                                    <a href="{{ route('laporankerusakanpdf', ['filter' => 'all']) }}"
+                                        class="btn btn-danger btn-block">
+                                        Export PDF
+                                    </a>
                                 @endif
                             </div>
                         </form>
@@ -68,12 +77,12 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                <th class="px-6 py-2">No</th>
-                                <th class="px-6 py-2">Tanggal</th>
-                                <th class="px-6 py-2">Alat</th>
-                                <th class="px-6 py-2">Lokasi</th>
-                                <th class="px-6 py-2">Kapasitas</th>
-                                <th class="px-6 py-2">Keterangan</th>
+                                    <th class="px-6 py-2">No</th>
+                                    <th class="px-6 py-2">Tanggal</th>
+                                    <th class="px-6 py-2">Alat</th>
+                                    <th class="px-6 py-2">Lokasi</th>
+                                    <th class="px-6 py-2">Kapasitas</th>
+                                    <th class="px-6 py-2">Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -83,19 +92,12 @@
                                 @foreach ($laporankerusakan as $index => $item)
                                     <tr>
                                         <td class="px-6 py-6">{{ $loop->iteration }}</td>
-                                        <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
+                                        <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}
+                                        </td>
                                         <td class="px-6 py-2">{{ $item->masteralat->nama }}</td>
                                         <td class="px-6 py-2">{{ $item->lokasi }}</td>
                                         <td class="px-6 py-2">{{ $item->kapasitas }}</td>
                                         <td class="px-6 py-2">{{ $item->ketkerusakan }}</td>
-                                        {{-- <td class="px-6 py-2">
-                                            <!-- Display status as a badge if it's already set -->
-                                            @if($item->status == 'Terverifikasi')
-                                                <span class="p-2 mb-2 bg-success text-black rounded">Terverifikasi</span> <!-- Green for verified -->
-                                            @elseif($item->status == 'Ditolak')
-                                                <span class="p-2 mb-2 bg-danger text-black rounded">Ditolak</span> <!-- Red/orange for rejected -->
-                                            @endif
-                                        </td> --}}
                                     </tr>
                                 @endforeach
                             </tbody>

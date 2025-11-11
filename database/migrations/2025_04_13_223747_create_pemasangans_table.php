@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('kapasitas');
             $table->string('odcterhubung');
             $table->string('tanggal');
+            $table->string('waktumulai');
+            $table->string('waktuselesai');
             $table->timestamps();
         });
     }

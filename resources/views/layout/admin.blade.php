@@ -99,6 +99,22 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('perbaikan.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-menu"></i>
+                        </span>
+                        <span class="hide-menu">Perbaikan Alat</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('pergantian.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-menu"></i>
+                        </span>
+                        <span class="hide-menu">Pergantian Alat Rusak</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('izinlokasi.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-menu"></i>
@@ -115,15 +131,6 @@
                         <span class="hide-menu">Kerusakan Alat</span>
                     </a>
                 </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('perbaikan.index') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-menu"></i>
-                        </span>
-                        <span class="hide-menu">Perbaikan Alat</span>
-                    </a>
-                </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('lapangan.index') }}" aria-expanded="false">
                         <span>
@@ -132,14 +139,7 @@
                         <span class="hide-menu">Laporan Lapangan</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('pergantian.index') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-menu"></i>
-                        </span>
-                        <span class="hide-menu">Pergantian Alat Rusak</span>
-                    </a>
-                </li>
+
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('evaluasi.index') }}" aria-expanded="false">
                         <span>

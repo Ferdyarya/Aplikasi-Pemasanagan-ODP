@@ -12,7 +12,7 @@ class Pemasangan extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id_masterclient','id_masteralat','lokasi','kapasitas','odcterhubung','id_masterteknisi','nopemasangan','tanggal'
+        'id_masterclient','id_masteralat','lokasi','kapasitas','odcterhubung','id_masterteknisi','nopemasangan','tanggal','waktumulai','waktuselesai'
     ];
 
     public function masteralat()

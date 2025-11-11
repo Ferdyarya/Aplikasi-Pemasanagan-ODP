@@ -68,13 +68,13 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                <th class="px-6 py-2">No</th>
-                                <th class="px-6 py-2">Tanggal</th>
-                                <th class="px-6 py-2">Alat</th>
-                                <th class="px-6 py-2">Teknisi</th>
-                                <th class="px-6 py-2">Lokasi</th>
-                                <th class="px-6 py-2">Kapasitas</th>
-                                <th class="px-6 py-2">Keterangan</th>
+                                    <th class="px-6 py-2">No</th>
+                                    <th class="px-6 py-2">Tanggal</th>
+                                    <th class="px-6 py-2">Alat Terpasang</th>
+                                    <th class="px-6 py-2">Teknisi</th>
+                                    <th class="px-6 py-2">Lokasi</th>
+                                    <th class="px-6 py-2">Kapasitas</th>
+                                    <th class="px-6 py-2">Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,11 +84,12 @@
                                 @foreach ($laporanpergantian as $index => $item)
                                     <tr>
                                         <td class="px-6 py-6">{{ $loop->iteration }}</td>
-                                        <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
-                                        <td class="px-6 py-2">{{ $item->masteralat->nama }}</td>
-                                        <td class="px-6 py-2">{{ $item->masterteknisi->nama }}</td>
+                                        <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}
+                                        </td>
+                                        <td class="px-6 py-2">{{ $item->masterpemasangan->masteralat->nama }}</td>
+                                        <td class="px-6 py-2">{{ $item->masterpemasangan->masterteknisi->nama }}</td>
                                         <td class="px-6 py-2">{{ $item->lokasi }}</td>
-                                        <td class="px-6 py-2">{{ $item->kapasitas }}</td>
+                                        <td class="px-6 py-2">{{ $item->masterpemasangan->kapasitas }}</td>
                                         <td class="px-6 py-2">{{ $item->keterangan }}</td>
                                     </tr>
                                 @endforeach

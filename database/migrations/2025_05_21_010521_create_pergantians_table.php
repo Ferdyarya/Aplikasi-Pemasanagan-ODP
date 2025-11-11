@@ -15,12 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('tanggal');
             $table->string('lokasi');
-            $table->string('id_masteralat');
-            $table->string('id_masterteknisi');
+            // $table->string('id_masteralat');
+            // $table->string('id_masterteknisi');
+            $table->string('id_masterperbaikan');
             $table->string('keterangan');
-            $table->string('kapasitas');
+            // $table->string('kapasitas');
+            $table->string('biaya');
             $table->string('fotosebelum');
             $table->string('fotosesudah');
+            $table->string('waktumulai');
+            $table->string('waktuselesai');
             $table->timestamps();
         });
     }

@@ -53,6 +53,8 @@
                                 <th class="px-6 py-2">Lokasi</th>
                                 <th class="px-6 py-2">Kapasitas</th>
                                 <th class="px-6 py-2">Keterangan</th>
+                                <th class="px-6 py-2">Waktu Mulai</th>
+                                <th class="px-6 py-2">Waktu Selesai</th>
                                 <th class="px-6 py-2">Foto Sebelum</th>
                                 <th class="px-6 py-2">Foto Sesudah</th>
                                 {{-- <th class="px-6 py-2">Status</th> --}}
@@ -67,44 +69,19 @@
                             <tr>
                                 <th class="px-6 py-2">{{ $index + $perbaikan->firstItem() }}</th>
                                 <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
-                                <td class="px-6 py-2">{{ $item->masteralat->nama }}</td>
-                                <td class="px-6 py-2">{{ $item->masterteknisi->nama }}</td>
+                                <td class="px-6 py-2">{{ $item->masterpemasangan->masteralat->nama }}</td>
+                                <td class="px-6 py-2">{{ $item->masterpemasangan->masterteknisi->nama }}</td>
                                 <td class="px-6 py-2">{{ $item->lokasi }}</td>
-                                <td class="px-6 py-2">{{ $item->kapasitas }}</td>
+                                <td class="px-6 py-2">{{ $item->masterpemasangan->kapasitas }}</td>
                                 <td class="px-6 py-2">{{ $item->keterangan }}</td>
+                                <td class="px-6 py-2">{{ $item->waktumulai }}</td>
+                                <td class="px-6 py-2">{{ $item->waktuselesai }}</td>
                                 <td class="px-6 py-2">
                                     <img src="{{ asset('fotosebelum/'.$item->fotosebelum) }}" style="max-width: 150px; height: 120px;">
                                 </td>
                                 <td class="px-6 py-2">
                                     <img src="{{ asset('fotosesudah/'.$item->fotosesudah) }}" style="max-width: 150px; height: 120px;">
                                 </td>
-                                {{-- <td class="px-6 py-2">
-                                    @if($item->status == 'Terverifikasi')
-                                        <span class="p-2 mb-2 bg-success text-black rounded">Terverifikasi</span> <!-- Green for verified -->
-                                    @elseif($item->status == 'Ditolak')
-                                        <span class="p-2 mb-2 bg-danger text-black rounded">Ditolak</span> <!-- Red/orange for rejected -->
-                                    @elseif($item->status == 'Tunggu Verifikasi')
-                                        <span class="p-2 mb-2 bg-warning text-black rounded">Tunggu Verifikasi</span> <!-- Yellow for waiting verification -->
-                                    @else
-                                        <!-- When status is neither 'Terverifikasi', 'Ditolak', nor 'Tunggu Verifikasi' -->
-                                        @if (!Auth::user()->hakakses('Supervisor'))
-                                            <span class="p-2 mb-2 bg-warning text-black rounded">Tunggu Verifikasi</span> <!-- Default to "Waiting for Verification" if not Supervisor -->
-                                        @endif
-                                        @if (Auth::user()->hakakses('Supervisor'))
-                                        <form action="{{ route('updateStatusRawat', $item->id) }}" method="POST">
-                                            @csrf
-                                            @method('PUT') <!-- Use PUT method to update the record -->
-                                            <select name="status" class="form-control form-control-sm">
-                                                <option value="Terverifikasi" {{ $item->status == 'Terverifikasi' ? 'selected' : '' }} style="background-color: #28a745; color: white;">Verifikasi</option> <!-- Green for Verifikasi -->
-                                                <option value="Ditolak" {{ $item->status == 'Ditolak' ? 'selected' : '' }} style="background-color: #dc3545; color: white;">Tolak</option> <!-- Red for Ditolak -->
-                                                <option value="Tunggu Verifikasi" {{ $item->status == 'Tunggu Verifikasi' ? 'selected' : '' }} style="background-color: #ffc107; color: black;">Tunggu Verifikasi</option> <!-- Yellow for Tunggu Verifikasi -->
-                                            </select>
-                                            <!-- Submit button to save changes -->
-                                            <button type="submit" class="btn btn-primary btn-sm mt-2">Update Status</button>
-                                        </form>
-                                        @endif
-                                    @endif
-                                </td> --}}
                                 <td class="px-6 py-2">
                                     <a href="{{ route('perbaikan.edit', $item->id) }}" class="btn btn-primary">Edit</a>
                                     <form action="{{ route('perbaikan.destroy', $item->id) }}" method="POST" style="display:inline;">

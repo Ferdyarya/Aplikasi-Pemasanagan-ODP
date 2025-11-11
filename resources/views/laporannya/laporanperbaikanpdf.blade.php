@@ -32,7 +32,7 @@
             padding-top: 12px;
             padding-bottom: 12px;
             /* text-align: left; */
-            background-color: #feed00;
+            background-color: #fe0000;
             color: rgb(0, 0, 0);
             /* text-align: center; */
         }
@@ -79,7 +79,8 @@
                 <td><img src="{{ public_path('assets/logo1.png') }}" alt="logo" width="140px"></td>
                 <td class="tengah">
                     <h4> TELKOM AKSES </h4>
-                    <p>Jalan Jenderal Ahmad Yani KM 23, Landasan Ulin, Landasan Ulin Barat, Kec. Liang Anggang, Kota Banjarbaru</p>
+                    <p>Jalan Jenderal Ahmad Yani KM 23, Landasan Ulin, Landasan Ulin Barat, Kec. Liang Anggang, Kota
+                        Banjarbaru</p>
                 </td>
             </tr>
         </table>
@@ -102,7 +103,7 @@
                 <th class="px-6 py-2">Teknisi</th>
                 <th class="px-6 py-2">Lokasi</th>
                 <th class="px-6 py-2">Kapasitas</th>
-                <th class="px-6 py-2">Catatan</th>
+                <th class="px-6 py-2">Keterangan</th>
             </tr>
         </thead>
         <tbody>
@@ -114,11 +115,11 @@
                 <tr>
                     <td class="px-6 py-6">{{ $loop->iteration }}</td>
                     <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
-                    <td class="px-6 py-2">{{ $item->masteralat->nama }}</td>
-                    <td class="px-6 py-2">{{ $item->masterteknisi->nama }}</td>
+                    <td class="px-6 py-2">{{ $item->masterpemasangan->masteralat->nama }}</td>
+                    <td class="px-6 py-2">{{ $item->masterpemasangan->masterteknisi->nama }}</td>
                     <td class="px-6 py-2">{{ $item->lokasi }}</td>
-                    <td class="px-6 py-2">{{ $item->kapasitas }}</td>
-                    <td class="px-6 py-2">{{ $item->catatan }}</td>
+                    <td class="px-6 py-2">{{ $item->masterpemasangan->kapasitas }}</td>
+                    <td class="px-6 py-2">{{ $item->keterangan }}</td>
                 </tr>
             @endforeach
         </tbody>

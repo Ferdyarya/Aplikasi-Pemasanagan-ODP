@@ -43,7 +43,8 @@
                                                     <option value="">-- Pilih Teknisi --</option>
                                                     @foreach ($masterteknisi as $item)
                                                         <option value="{{ $item->id }}">
-                                                            {{ $item->idteknisi }} - {{ $item->nama }} - {{ $item->notelp }}
+                                                            {{ $item->idteknisi }} - {{ $item->nama }} -
+                                                            {{ $item->notelp }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -111,6 +112,25 @@
                                                 @enderror
                                             </div>
 
+                                            <div class="form-group">
+                                                <label for="waktumulai">Waktu Mulai</label>
+                                                <input type="time" name="waktumulai"
+                                                    class="form-control @error('waktumulai') is-invalid @enderror"
+                                                    id="waktumulai" value="{{ old('waktumulai') }}" required>
+                                                @error('waktumulai')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="waktuselesai">Waktu Selesai</label>
+                                                <input type="time" name="waktuselesai"
+                                                    class="form-control @error('waktuselesai') is-invalid @enderror"
+                                                    id="waktuselesai" value="{{ old('waktuselesai') }}" required>
+                                                @error('waktuselesai')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                         </form>
                                     </div>
@@ -166,20 +186,20 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
-        $( '#client' ).select2( {
-        theme: "bootstrap-5",
-        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
-        placeholder: $( this ).data( 'placeholder' ),
-        } );
-        $( '#alat' ).select2( {
-        theme: "bootstrap-5",
-        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
-        placeholder: $( this ).data( 'placeholder' ),
-        } );
-        $( '#teknisi' ).select2( {
-        theme: "bootstrap-5",
-        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
-        placeholder: $( this ).data( 'placeholder' ),
-        } );
+        $('#client').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+        });
+        $('#alat').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+        });
+        $('#teknisi').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+        });
     </script>
 @endsection

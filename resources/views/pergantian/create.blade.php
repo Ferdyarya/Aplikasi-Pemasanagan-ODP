@@ -36,25 +36,13 @@
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group mb-3">
-                                                <label for="id_masteralat">Alat</label>
-                                                <select class="form-select" name="id_masteralat" id="alat"
-                                                    style="border-radius: 8px;" data-placeholder="Pilih Alat">
+                                                <label for="id_masterperbaikan">Alat Terpasang</label>
+                                                <select class="form-select" name="id_masterperbaikan" id="alat"
+                                                    style="border-radius: 8px;" data-placeholder="Pilih Alat Terpasang">
                                                     <option></option>
-                                                    @foreach ($masteralat as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group mb-3">
-                                                <label for="id_masterteknisi">Teknisi</label>
-                                                <select class="form-select" name="id_masterteknisi" id="teknisi"
-                                                    style="border-radius: 8px;" data-placeholder="Pilih Teknisi" required>
-                                                    <option value="">-- Pilih Teknisi --</option>
-                                                    @foreach ($masterteknisi as $item)
+                                                    @foreach ($masterperbaikan as $item)
                                                         <option value="{{ $item->id }}">
-                                                            {{ $item->idteknisi }} - {{ $item->nama }} - {{ $item->notelp }}
-                                                        </option>
+                                                            {{ $item->masterpemasangan->masteralat->nama }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -81,12 +69,21 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="kapasitas">Kapasitas</label>
-                                                <input type="text" name="kapasitas"
-                                                    class="form-control @error('kapasitas') is-invalid @enderror"
-                                                    id="kapasitas" placeholder="Masukkan Kapasitas" value="{{ old('kapasitas') }}"
-                                                    required>
-                                                @error('kapasitas')
+                                                <label for="waktu_mulai">Waktu Mulai</label>
+                                                <input type="time" name="waktu_mulai"
+                                                    class="form-control @error('waktu_mulai') is-invalid @enderror"
+                                                    id="waktu_mulai" value="{{ old('waktu_mulai') }}" required>
+                                                @error('waktu_mulai')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="waktu_selesai">Waktu Selesai</label>
+                                                <input type="time" name="waktu_selesai"
+                                                    class="form-control @error('waktu_selesai') is-invalid @enderror"
+                                                    id="waktu_selesai" value="{{ old('waktu_selesai') }}" required>
+                                                @error('waktu_selesai')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -96,6 +93,15 @@
                                                 <textarea name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" id="keterangan"
                                                     placeholder="Masukkan keterangan" required>{{ old('keterangan') }}</textarea>
                                                 @error('keterangan')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="biaya">Biaya</label>
+                                                <input type="number" name="biaya"
+                                                    class="form-control @error('biaya') is-invalid @enderror" id="biaya"
+                                                    placeholder="Masukkan biaya" value="{{ old('biaya') }}" required>
+                                                @error('biaya')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use PDF;
 use App\Models\Perbaikan;
 use App\Models\Masteralat;
+use App\Models\Pemasangan;
 use Illuminate\Http\Request;
 use App\Models\Masterteknisi;
 use App\Mail\PerbaikanCreatedMail;
@@ -29,12 +30,12 @@ class PerbaikanController extends Controller
 
     public function create()
     {
-        $masteralat = Masteralat::all();
-        $masterteknisi = Masterteknisi::all();
+        // $masteralat = Masteralat::all();
+        // $masterteknisi = Masterteknisi::all();
+        $masterpemasangan = Pemasangan::all();
 
         return view('perbaikan.create', [
-            'masteralat' => $masteralat,
-            'masterteknisi' => $masterteknisi,
+            'masterpemasangan' => $masterpemasangan,
         ]);
         return view('perbaikan.create')->with('success', 'Data Telah ditambahkan');
     }
@@ -63,13 +64,14 @@ class PerbaikanController extends Controller
 
     public function edit(Perbaikan $perbaikan)
     {
-        $masteralat = Masteralat::all();
-        $masterteknisi = Masterteknisi::all();
+        // $masteralat = Masteralat::all();
+        // $masterteknisi = Masterteknisi::all();
+
+        $masterpemasangan = Pemasangan::all();
 
         return view('perbaikan.edit', [
             'item' => $perbaikan,
-            'masteralat' => $masteralat,
-            'masterteknisi' => $masterteknisi,
+            'masterpemasangan' => $masterpemasangan,
         ]);
     }
 

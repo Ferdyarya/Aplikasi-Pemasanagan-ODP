@@ -13,14 +13,17 @@ return new class extends Migration
     {
         Schema::create('perbaikans', function (Blueprint $table) {
             $table->id();
-            $table->string('id_masteralat');
-            $table->string('id_masterteknisi');
+            // $table->string('id_masteralat');
+            $table->string('id_masterpemasangan');
+            // $table->string('id_masterteknisi');
             $table->string('tanggal');
-            $table->string('kapasitas');
+            // $table->string('kapasitas');
             $table->string('lokasi');
             $table->string('keterangan');
             $table->string('fotosebelum');
             $table->string('fotosesudah');
+            $table->string('waktumulai');
+            $table->string('waktuselesai');
             $table->timestamps();
         });
     }

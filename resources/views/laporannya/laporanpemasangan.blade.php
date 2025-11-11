@@ -68,14 +68,18 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                <th class="px-6 py-2">No</th>
-                                <th class="px-6 py-2">Tanggal</th>
-                                <th class="px-6 py-2">Client</th>
-                                <th class="px-6 py-2">Alat</th>
-                                <th class="px-6 py-2">Teknisi</th>
-                                <th class="px-6 py-2">Lokasi</th>
-                                <th class="px-6 py-2">Kapasitas</th>
-                                <th class="px-6 py-2">ODC Terhubung</th>
+                                    <th class="px-6 py-2">No</th>
+                                    <th class="px-6 py-2">No Pemasangan</th>
+                                    <th class="px-6 py-2">Tanggal</th>
+                                    <th class="px-6 py-2">Client</th>
+                                    <th class="px-6 py-2">Alat</th>
+                                    <th class="px-6 py-2">Teknisi</th>
+                                    <th class="px-6 py-2">Lokasi</th>
+                                    <th class="px-6 py-2">Kapasitas</th>
+                                    <th class="px-6 py-2">ODC Terhubung</th>
+                                    <th class="px-6 py-2">Waktu Mulai</th>
+                                    <th class="px-6 py-2">Waktu Selesai</th>
+                                    <th class="px-6 py-2">Total Jam</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -85,21 +89,25 @@
                                 @foreach ($laporanpemasangan as $index => $item)
                                     <tr>
                                         <td class="px-6 py-6">{{ $loop->iteration }}</td>
-                                        <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
+                                        <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}
+                                        </td>
                                         <td class="px-6 py-2">{{ $item->masterclient->nama }}</td>
                                         <td class="px-6 py-2">{{ $item->masteralat->nama }}</td>
                                         <td class="px-6 py-2">{{ $item->masterteknisi->nama }}</td>
                                         <td class="px-6 py-2">{{ $item->lokasi }}</td>
                                         <td class="px-6 py-2">{{ $item->kapasitas }}</td>
                                         <td class="px-6 py-2">{{ $item->odcterhubung }}</td>
-                                        {{-- <td class="px-6 py-2">
-                                            <!-- Display status as a badge if it's already set -->
-                                            @if($item->status == 'Terverifikasi')
-                                                <span class="p-2 mb-2 bg-success text-black rounded">Terverifikasi</span> <!-- Green for verified -->
-                                            @elseif($item->status == 'Ditolak')
-                                                <span class="p-2 mb-2 bg-danger text-black rounded">Ditolak</span> <!-- Red/orange for rejected -->
-                                            @endif
-                                        </td> --}}
+                                        <td class="px-6 py-2">{{ $item->waktumulai }}</td>
+                                        <td class="px-6 py-2">{{ $item->waktumulai }}</td>
+                                        <td class="px-6 py-2">{{ $item->waktuselesai }}</td>
+                                        @php
+                                            $mulai = \Carbon\Carbon::parse($item->waktumulai);
+                                            $selesai = \Carbon\Carbon::parse($item->waktuselesai);
+                                            $total = $selesai->diff($mulai); // selisih waktu
+                                        @endphp
+                                        <td class="px-6 py-2">
+                                            {{ $total->h }} jam {{ $total->i }} menit
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

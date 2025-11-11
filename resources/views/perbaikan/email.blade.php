@@ -98,11 +98,11 @@
                 </tr>
                 <tr>
                     <th>Alat</th>
-                    <td>{{ $data->masteralat->nama ?? '-' }}</td>
+                    <td>{{ $data->masterpemasangan->masteralat->nama ?? '-' }}</td>
                 </tr>
                 <tr>
                     <th>Teknisi</th>
-                    <td>{{ $data->masterteknisi->nama ?? '-' }}</td>
+                    <td>{{ $data->masterpemasangan->masterteknisi->nama ?? '-' }}</td>
                 </tr>
                 <tr>
                     <th>Lokasi</th>

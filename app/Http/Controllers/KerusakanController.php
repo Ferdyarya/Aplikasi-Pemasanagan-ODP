@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use PDF;
 use App\Models\Kerusakan;
 use App\Models\Masteralat;
@@ -11,49 +10,41 @@ use Illuminate\Http\Request;
 class KerusakanController extends Controller
 {
     public function index(Request $request)
-{
-    if ($request->has('search')) {
-        $kerusakan = Kerusakan::whereHas('masteralat', function($query) use ($request) {
-            $query->where('nama', 'LIKE', '%' . $request->search . '%');
-        })->paginate(10);
-    } else {
-        $kerusakan = Kerusakan::paginate(10);
+    {
+        if ($request->has('search')) {
+            $kerusakan = Kerusakan::whereHas('masteralat', function ($query) use ($request) {
+                $query->where('nama', 'LIKE', '%' . $request->search . '%');
+            })->paginate(10);
+        } else {
+            $kerusakan = Kerusakan::paginate(10);
+        }
+
+        return view('kerusakan.index', [
+            'kerusakan' => $kerusakan,
+        ]);
     }
-
-    return view('kerusakan.index', [
-        'kerusakan' => $kerusakan
-    ]);
-}
-
 
     public function create()
-{
-    $masteralat = Masteralat::all();
-
-    return view('kerusakan.create', [
-        'masteralat' => $masteralat,
-    ]);
-}
-
-public function store(Request $request)
-{
-
-    $data = $request->all();
-
-    // dd($data);
-
-    Kerusakan::create($data);
-
-    return redirect()->route('kerusakan.index')->with('success', 'Data telah ditambahkan');
-}
-
-
-
-    public function show($id)
     {
+        $masteralat = Masteralat::all();
 
+        return view('kerusakan.create', [
+            'masteralat' => $masteralat,
+        ]);
     }
 
+    public function store(Request $request)
+    {
+        $data = $request->all();
+
+        // dd($data);
+
+        Kerusakan::create($data);
+
+        return redirect()->route('kerusakan.index')->with('success', 'Data telah ditambahkan');
+    }
+
+    public function show($id) {}
 
     public function edit(Kerusakan $kerusakan)
     {
@@ -65,7 +56,6 @@ public function store(Request $request)
         ]);
     }
 
-
     public function update(Request $request, Kerusakan $kerusakan)
     {
         $data = $request->all();
@@ -75,9 +65,7 @@ public function store(Request $request)
         //dd($data);
 
         return redirect()->route('kerusakan.index')->with('success', 'Data Telah diupdate');
-
     }
-
 
     public function destroy(Kerusakan $kerusakan)
     {
@@ -86,75 +74,59 @@ public function store(Request $request)
     }
 
     //Approval Status
-//     public function updateStatusRawat(Request $request, $id)
-// {
-//     $validated = $request->validate([
-//         'status' => 'required|in:Terverifikasi,Ditolak',
-//     ]);
+    //     public function updateStatusRawat(Request $request, $id)
+    // {
+    //     $validated = $request->validate([
+    //         'status' => 'required|in:Terverifikasi,Ditolak',
+    //     ]);
 
-//     $kerusakan = kerusakan::findOrFail($id);
+    //     $kerusakan = kerusakan::findOrFail($id);
 
-//     $kerusakan->status = $validated['status'];
-//     $kerusakan->save();
+    //     $kerusakan->status = $validated['status'];
+    //     $kerusakan->save();
 
-//     return redirect()->route('kerusakan.index')->with('success', 'Status surat berhasil diperbarui.');
-// }
-
-
-
-
-
-
-
-
-
-
-
-
+    //     return redirect()->route('kerusakan.index')->with('success', 'Status surat berhasil diperbarui.');
+    // }
 
     //Report
     //  Laporan Buku kerusakan Filter
-     public function cetakkerusakanpertanggal()
-     {
-         $kerusakan = Kerusakan::Paginate(10);
+    public function cetakkerusakanpertanggal()
+    {
+        $kerusakan = Kerusakan::Paginate(10);
 
-         return view('laporannya.laporankerusakan', ['laporankerusakan' => $kerusakan]);
-     }
+        return view('laporannya.laporankerusakan', ['laporankerusakan' => $kerusakan]);
+    }
 
-     public function filterdatekerusakan(Request $request)
-     {
-         $startDate = $request->input('dari');
-         $endDate = $request->input('sampai');
+    public function filterkerusakan(Request $request)
+    {
+        $filter = $request->input('filter');
 
-          if ($startDate == '' && $endDate == '') {
-             $laporankerusakan = Kerusakan::paginate(10);
-         } else {
-             $laporankerusakan = Kerusakan::whereDate('tanggal','>=',$startDate)
-                                         ->whereDate('tanggal','<=',$endDate)
-                                         ->paginate(10);
-         }
-         session(['filter_start_date' => $startDate]);
-         session(['filter_end_date' => $endDate]);
+        $query = Kerusakan::query();
 
-         return view('laporannya.laporankerusakan', compact('laporankerusakan'));
-     }
+        if ($filter && $filter !== 'all') {
+            $query->where('lokasi', $filter);
+        }
 
+        $laporankerusakan = $query->paginate(10);
 
-     public function laporankerusakanpdf(Request $request )
-     {
-         $startDate = session('filter_start_date');
-         $endDate = session('filter_end_date');
+        // Ambil daftar lokasi unik
+        $lokasiCounts = Kerusakan::distinct()->pluck('lokasi');
 
-         if ($startDate == '' && $endDate == '') {
-             $laporankerusakan = Kerusakan::all();
-         } else {
-             $laporankerusakan = Kerusakan::whereDate('tanggal', '>=', $startDate)
-                                             ->whereDate('tanggal', '<=', $endDate)
-                                             ->get();
-         }
+        return view('laporannya.laporankerusakan', compact('laporankerusakan', 'lokasiCounts', 'filter'));
+    }
 
-         // Render view dengan menyertakan data laporan dan informasi filter
-         $pdf = PDF::loadview('laporannya.laporankerusakanpdf', compact('laporankerusakan'));
-         return $pdf->download('laporan_laporankerusakan.pdf');
-     }
+    public function laporankerusakanpdf($filter = 'all')
+    {
+        $query = Kerusakan::query();
+
+        if ($filter !== 'all') {
+            $query->where('lokasi', $filter);
+        }
+
+        $laporankerusakan = $query->get();
+
+        $pdf = PDF::loadView('laporannya.laporankerusakanpdf', compact('laporankerusakan', 'filter'));
+
+        return $pdf->download('laporan_laporankerusakan.pdf');
+    }
 }

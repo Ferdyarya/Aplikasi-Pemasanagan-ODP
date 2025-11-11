@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use PDF;
+use App\Models\Perbaikan;
 use App\Models\Masteralat;
 use App\Models\Pergantian;
 use Illuminate\Http\Request;
@@ -28,12 +29,10 @@ class PergantianController extends Controller
 
     public function create()
     {
-        $masteralat = Masteralat::all();
-        $masterteknisi = Masterteknisi::all();
+        $masterperbaikan = Perbaikan::all();
 
         return view('pergantian.create', [
-            'masteralat' => $masteralat,
-            'masterteknisi' => $masterteknisi,
+            'masterperbaikan' => $masterperbaikan,
         ]);
         return view('pergantian.create')->with('success', 'Data Telah ditambahkan');
     }
@@ -65,13 +64,11 @@ class PergantianController extends Controller
 
     public function edit(Pergantian $pergantian)
     {
-        $masteralat = Masteralat::all();
-        $masterteknisi = Masterteknisi::all();
+        $masterperbaikan = Perbaikan::all();
 
         return view('pergantian.edit', [
             'item' => $pergantian,
-            'masteralat' => $masteralat,
-            'masterteknisi' => $masterteknisi,
+            'masterperbaikan' => $masterperbaikan,
         ]);
     }
 

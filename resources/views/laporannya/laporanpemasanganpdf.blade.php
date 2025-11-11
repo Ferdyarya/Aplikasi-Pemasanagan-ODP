@@ -7,20 +7,19 @@
 </head>
 
 <body>
+   <!-- Gunakan format cetak A4 landscape -->
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 20mm;
+        }
+    </style>
+
     <style type="text/css">
-        table tr td,
-        table tr th {
-            font-size: 9pt;
-        }
-
+        /* ======= Global ======= */
         body {
-            font-family: arial;
-
-        }
-
-        table {
-            border-bottom: 4px solid #000;
-            /* padding: 2px */
+            font-family: Arial, sans-serif;
+            margin: 30px;
         }
 
         .tengah {
@@ -28,15 +27,39 @@
             line-height: 5px;
         }
 
-        #warnatable th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            /* text-align: left; */
-            background-color: #feed00;
-            color: rgb(0, 0, 0);
-            /* text-align: center; */
+        h4, h5 {
+            margin: 0;
+            padding: 0;
         }
 
+        /* ======= Table Layout ======= */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-bottom: 4px solid #000;
+            table-layout: auto;
+        }
+
+        table tr td,
+        table tr th {
+            font-size: 9pt;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #000;
+            padding: 5px;
+            word-wrap: break-word;
+        }
+
+        /* ======= Header Table ======= */
+        #warnatable th {
+            background-color: #fe0000;
+            color: #000;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            white-space: nowrap;
+        }
+
+        /* ======= Baris Ganjil/Genap ======= */
         #warnatable tr:nth-child(even) {
             background-color: #f2f2f2;
         }
@@ -45,58 +68,89 @@
             background-color: #ddd;
         }
 
-        .textmid {
-            /* text-align: center; */
-        }
+        /* ======= Lebar Kolom ======= */
+        #warnatable th:nth-child(1)  { width: 4%; }
+        #warnatable th:nth-child(2)  { width: 9%; }
+        #warnatable th:nth-child(3)  { width: 8%; }
+        #warnatable th:nth-child(4)  { width: 9%; }
+        #warnatable th:nth-child(5)  { width: 8%; }
+        #warnatable th:nth-child(6)  { width: 9%; }
+        #warnatable th:nth-child(7)  { width: 10%; }
+        #warnatable th:nth-child(8)  { width: 7%; }
+        #warnatable th:nth-child(9)  { width: 7%; }
+        #warnatable th:nth-child(10) { width: 7%; }
+        #warnatable th:nth-child(11) { width: 7%; }
+        #warnatable th:nth-child(12) { width: 7%; }
 
+        /* ======= Bagian Tanda Tangan ======= */
         .signature {
-            position: absolute;
-            margin-top: 20px;
+            margin-top: 50px;
             text-align: right;
-            right: 50px;
             font-size: 14px;
         }
 
         .signaturesewa {
-            position: absolute;
-            margin-top: 20px;
+            margin-top: 50px;
             text-align: left;
-            left: 50px;
-            /* Mengubah dari right ke left untuk menempatkan di kiri */
             font-size: 14px;
         }
 
+        /* ======= Bagian Tanggal ======= */
         .date-container {
-            font-family: arial;
+            font-family: Arial, sans-serif;
             text-align: left;
             font-size: 14px;
+            margin-top: 20px;
+        }
+
+        /* ======= Saat Cetak ======= */
+        @media print {
+            body {
+                margin: 10mm;
+            }
+
+            table {
+                font-size: 8pt;
+            }
+
+            th, td {
+                padding: 3px;
+            }
+
+            .signature, .signaturesewa {
+                font-size: 12px;
+            }
         }
     </style>
 
-    <div class="rangkasurat">
+
+    <div class="overflow-x: auto;">
         <table width="100%">
             <tr>
                 <td><img src="{{ public_path('assets/logo1.png') }}" alt="logo" width="140px"></td>
                 <td class="tengah">
                     <h4> TELKOM AKSES </h4>
-                    <p>Jalan Jenderal Ahmad Yani KM 23, Landasan Ulin, Landasan Ulin Barat, Kec. Liang Anggang, Kota Banjarbaru</p>
+                    <br>
+                    <p>Jalan Jenderal Ahmad Yani KM 23, Landasan Ulin, Landasan Ulin Barat, Kec. Liang Anggang, Kota
+                        Banjarbaru</p>
                 </td>
             </tr>
         </table>
     </div>
 
     <center>
-        <h5 class="mt-4">Rekap Laporan Surat Izin Masuk Lokasi</h5>
+        <h5 class="mt-4">Rekap Laporan Surat Pemasangan</h5>
     </center>
 
 
 
     <br>
 
-    <table class='table table-bordered' id="warnatable">
+    <table class="table table-bordered" id="warnatable">
         <thead>
             <tr>
                 <th class="px-6 py-2">No</th>
+                <th class="px-6 py-2">No Pemasangan</th>
                 <th class="px-6 py-2">Tanggal</th>
                 <th class="px-6 py-2">Client</th>
                 <th class="px-6 py-2">Alat</th>
@@ -104,16 +158,21 @@
                 <th class="px-6 py-2">Lokasi</th>
                 <th class="px-6 py-2">Kapasitas</th>
                 <th class="px-6 py-2">ODC Terhubung</th>
+                <th class="px-6 py-2">Waktu Mulai</th>
+                <th class="px-6 py-2">Waktu Selesai</th>
+                <th class="px-6 py-2">Total Jam</th>
             </tr>
         </thead>
         <tbody>
-            {{-- @php
-            $grandTotal = 0;
-            @endphp --}}
-
             @foreach ($laporanpemasangan as $item)
+                @php
+                    $mulai = \Carbon\Carbon::parse($item->waktumulai);
+                    $selesai = \Carbon\Carbon::parse($item->waktuselesai);
+                    $total = $selesai->diff($mulai); // Selisih waktu
+                @endphp
                 <tr>
-                    <td class="px-6 py-6">{{ $loop->iteration }}</td>
+                    <td class="px-6 py-2 text-center">{{ $loop->iteration }}</td>
+                    <td class="px-6 py-2">{{ $item->nopemasangan ?? '-' }}</td>
                     <td class="px-6 py-2">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
                     <td class="px-6 py-2">{{ $item->masterclient->nama }}</td>
                     <td class="px-6 py-2">{{ $item->masteralat->nama }}</td>
@@ -121,18 +180,16 @@
                     <td class="px-6 py-2">{{ $item->lokasi }}</td>
                     <td class="px-6 py-2">{{ $item->kapasitas }}</td>
                     <td class="px-6 py-2">{{ $item->odcterhubung }}</td>
-                    {{-- <td class="px-6 py-2">
-                        <!-- Display status as a badge if it's already set -->
-                        @if($item->status == 'Terverifikasi')
-                            <span class="p-2 mb-2 bg-success text-black rounded">Terverifikasi</span> <!-- Green for verified -->
-                        @elseif($item->status == 'Ditolak')
-                            <span class="p-2 mb-2 bg-danger text-black rounded">Ditolak</span> <!-- Red/orange for rejected -->
-                        @endif
-                    </td> --}}
+                    <td class="px-6 py-2">{{ $mulai->format('H:i') }}</td>
+                    <td class="px-6 py-2">{{ $selesai->format('H:i') }}</td>
+                    <td class="px-6 py-2">
+                        {{ $total->h }} jam {{ $total->i }} menit
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+
     <div class="date-container">
         Banjarmasin, <span class="formatted-date">{{ now()->format('d-m-Y') }}</span>
     </div>
